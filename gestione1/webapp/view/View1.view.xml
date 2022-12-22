@@ -1,0 +1,355 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:u="sap.ui.unified"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:menu="sap.m.MenuItem"
+    xmlns:menBtn="sap.m.Menu"
+    height="100%"
+    controllerName="gestione1.controller.View1"
+>
+    <App id="app">
+        <f:DynamicPage showFooter="true">
+            <!-- <f:title>
+                <f:DynamicPageTitle>
+                    <f:heading>
+                        <Title text="{i18n>nome_app}" />
+                    </f:heading>
+                </f:DynamicPageTitle>
+            </f:title> -->
+            <f:header>
+                <f:DynamicPageHeader pinnable="false">
+                    <fb:FilterBar showClearOnFB="false" showFilterConfiguration="false" useToolbar="false" onClick="showFragment">
+                        <fb:filterGroupItems>
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="Esercizio" label="{i18n>es_decreto}" tooltip="suggestion" visibleInFilterBar="true" mandatory="true">
+                                <fb:control>
+                                    <MultiComboBox id="es_decreto" items="{contrattiModel>/}" selectionFinish="onSelectionFinish">
+                                        <core:Item id="es_decreto1" key="{contrattiModel>code}" text="{contrattiModel>code} {contrattiModel>desc}" />
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem groupName="__$INTERNAL$" id="amministrazioneED" visibleInFilterBar="true" name="amministrazioneED" label="{i18n>amministrazioneED}" mandatory="true">
+                                <fb:control>
+                                    <MultiInput id="amministrazioneED1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="uff1Livello" visibleInFilterBar="true" name="uff1Livello" groupName="Group1" label="{i18n>uff1Livello}">
+                                <fb:control>
+                                    <MultiInput id="uff1Livello1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="uff2Livello" visibleInFilterBar="true" name="uff2Livello" groupName="Group1" label="{i18n>uff2Livello}">
+                                <fb:control>
+                                    <MultiInput id="uff2Livello2" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="NumDeDa" visibleInFilterBar="true" name="NumDeDa" groupName="Group1" label="{i18n>NumDeDa}">
+                                <fb:control>
+                                    <MultiInput id="NumDeDa1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="NumDeA" visibleInFilterBar="true" name="NumDeA" groupName="Group1" label="{i18n>NumDeA}">
+                                <fb:control>
+                                    <MultiInput id="NumDeA1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+
+                            <fb:FilterGroupItem groupName="__$INTERNAL$" name="typeI" label="{i18n>typeI}" tooltip="suggestion" visibleInFilterBar="true" >
+                                <fb:control>
+                                    <MultiComboBox id="typeI" items="{contrattiModel>/}" selectionFinish="onSelectionFinish">
+                                        <core:Item id="typeI1" key="{contrattiModel>code}" text="{contrattiModel>code} {contrattiModel>desc}" />
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="contratto" visibleInFilterBar="true" name="contratto" groupName="Group1" label="{i18n>contratto}">
+                                <fb:control>
+                                    <MultiInput id="contratto1" showValueHelp="false"/>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="nContratto" visibleInFilterBar="true" name="nContratto" groupName="Group1" label="{i18n>nContratto}">
+                                <fb:control>
+                                   <MultiInput id="nContratto1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="CIG" visibleInFilterBar="true" name="CIG" groupName="Group1" label="{i18n>CIG}">
+                                <fb:control>
+                                      <MultiInput id="cCIG" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="beneficiario" visibleInFilterBar="true" name="beneficiario" groupName="Group1" label="{i18n>beneficiario}">
+                                <fb:control>
+                                    <MultiInput id="beneficiario1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="dDecretoDa" visibleInFilterBar="true" name="dDecretoDa" groupName="Group1" label="{i18n>dDecretoDa}">
+                                <fb:control>
+                                    <DatePicker id="dDecretoDa1" displayFormat="dd/MM/yyyy" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="dDecretoA" visibleInFilterBar="true" name="nDecretoA" groupName="Group1" label="{i18n>dDecretoA}">
+                                <fb:control>
+                                    <DatePicker id="dDecretoA1" displayFormat="dd/MM/yyyy" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="numIPEda" visibleInFilterBar="true" name="numIPEda" groupName="Group1" label="{i18n>numIPEda}">
+                                <fb:control>
+                                    <MultiInput id="numIPEda1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="numIPEa" visibleInFilterBar="true" name="numIPEa" groupName="Group1" label="{i18n>numIPEa}">
+                                <fb:control>
+                                    <MultiInput id="numIPEa1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="numClausolaDa" visibleInFilterBar="true" name="numClausolaDa" groupName="Group1" label="{i18n>numClausolaDa}">
+                                <fb:control>
+                                    <MultiInput id="numClausolaDa1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="numClausolaA" visibleInFilterBar="true" name="numClausolaA" groupName="Group1" label="{i18n>numClausolaA}">
+                                <fb:control>
+                                    <MultiInput id="numClausolaA1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="dataFirmaAmmDa" visibleInFilterBar="true" name="dataFirmaAmmDa" groupName="Group1" label="{i18n>dataFirmaAmmDa}">
+                                <fb:control>
+                                    <DatePicker id="dataFirmaAmmDa1" displayFormat="dd/MM/yyyy" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="dataFirmaAmmA" visibleInFilterBar="true" name="dataFirmaAmmA" groupName="Group1" label="{i18n>dataFirmaAmmA}">
+                                <fb:control>
+                                    <DatePicker id="dataFirmaAmmA1" displayFormat="dd/MM/yyyy" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="dataProtocolloAmmDa" visibleInFilterBar="true" name="dataProtocolloAmmDa" groupName="Group1" label="{i18n>dataProtocolloAmmDa}">
+                                <fb:control>
+                                    <DatePicker id="dataProtocolloAmmDa1" displayFormat="dd/MM/yyyy" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="dataProtocolloAmmA" visibleInFilterBar="true" name="dataProtocolloAmmA" groupName="Group1" label="{i18n>dataProtocolloAmmA}">
+                                <fb:control>
+                                    <DatePicker id="dataProtocolloAmmA1" displayFormat="dd/MM/yyyy" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="numProtocolloAmmaDa" visibleInFilterBar="true" name="numProtocolloAmmaDa" groupName="Group1" label="{i18n>numProtocolloAmmDa}">
+                                <fb:control>
+                                    <MultiInput id="numProtocolloAmmaDa1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem id="numProtocolloAmmA" visibleInFilterBar="true" name="numProtocolloAmmA" groupName="Group1" label="{i18n>numProtocolloAmmA}">
+                                <fb:control>
+                                    <MultiInput id="numProtocolloAmmA1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="dataProtocolloRGSDa" visibleInFilterBar="true" name="dataProtocolloRGSDa" groupName="Group1" label="{i18n>dataProtocolloRGSDa}">
+                                <fb:control>
+                                    <DatePicker id="dataProtocolloRGSDa1" displayFormat="dd/MM/yyyy" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="dataProtocolloRGSA" visibleInFilterBar="true" name="dataProtocolloRGSA" groupName="Group1" label="{i18n>dataProtocolloRGSA}">
+                                <fb:control>
+                                    <DatePicker id="dataProtocolloRGSA1" displayFormat="dd/MM/yyyy" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="numProtocolloRGSda" visibleInFilterBar="true" name="numProtocolloRGSda" groupName="Group1" label="{i18n>numProtocolloRGSda}">
+                                <fb:control>
+                                    <MultiInput id="numProtocolloRGSda1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem id="numProtocolloRGSa" visibleInFilterBar="true" name="numProtocolloRGSa" groupName="Group1" label="{i18n>numProtocolloRGSa}">
+                                <fb:control>
+                                    <MultiInput id="numProtocolloRGSa1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem  visibleInFilterBar="true" name="Stato" groupName="Group1" label="{i18n>Stato}">
+                                <fb:control>
+                                    <MultiComboBox id="Stato" items="{contrattiModel>/}" selectionFinish="onSelectionFinish">
+                                        <core:Item id="Stato1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem id="UffApp" visibleInFilterBar="true" name="UffApp" groupName="Group1" label="{i18n>UffApp}">
+                                <fb:control>
+                                    <MultiInput id="UffApp1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                             <fb:FilterGroupItem id="DuffApp" visibleInFilterBar="true" name="DuffApp" groupName="Group1" label="{i18n>DuffApp}">
+                                <fb:control>
+                                    <MultiInput id="DuffApp1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                               <fb:FilterGroupItem id="FlEst" visibleInFilterBar="true" name="FlEst" groupName="Group1" label="{i18n>FlEst}">
+                                <fb:control>
+                                    <MultiInput id="FlEst1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                              <fb:FilterGroupItem id="Osservazioni" visibleInFilterBar="true" name="Osservazioni" groupName="Group1" label="{i18n>Osservazioni}">
+                                <fb:control>
+                                    <MultiInput id="Osservazioni1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                             <fb:FilterGroupItem id="Riscontri" visibleInFilterBar="true" name="Riscontri" groupName="Group1" label="{i18n>Riscontri}">
+                                <fb:control>
+                                    <MultiInput id="Riscontri1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem id="EserPosFin" visibleInFilterBar="true" name="EserPosFin" groupName="Group1" label="{i18n>EserPosFin}" mandatory="true">
+                                <fb:control>
+                                    <MultiInput id="EserPosFin1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem id="PosFin" visibleInFilterBar="true" name="PosFin" groupName="Group1" label="{i18n>PosFin}" mandatory="true">
+                                <fb:control>
+                                    <MultiInput id="PosFin1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}"/>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="struttura_amm" visibleInFilterBar="true" name="struttura_amm" groupName="Group1" label="{i18n>struttura_amm}">
+                                <fb:control>
+                                    <MultiInput id="struttura_amm1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem id="Comp_Res" visibleInFilterBar="true" name="Comp_Res" groupName="Group1" label="{i18n>Comp_Res}">
+                                <fb:control>
+                                    <MultiInput id="Comp_Res1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<!-- <fb:FilterGroupItem id="PF" visibleInFilterBar="true" name="PF" groupName="Group1" label="{i18n>PF}">
+                                <fb:control>
+                                    <MultiInput id="PF1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="autorizzazione" visibleInFilterBar="true" name="autorizzazione" groupName="Group1" label="{i18n>autorizzazione}">
+                                <fb:control>
+                                    <MultiComboBox id="autorizzazione1">
+                                        <core:Item id="autorizzazione2" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="EPR" visibleInFilterBar="true" name="EPR" groupName="Group1" label="{i18n>EPR}">
+                                <fb:control>
+                                    <MultiInput id="EPR1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem> -->
+						</fb:filterGroupItems>
+                    </fb:FilterBar>
+                </f:DynamicPageHeader>
+            </f:header>
+
+            <f:content>
+            <Table class="sapUiSizeCompact" id="tab" includeItemInSelection="true">
+        <headerToolbar>
+            <OverflowToolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://display" id="DettagliDE" type="Emphasized" text="Dettagli Decreto di Impegno" press="navToDettagliDE" />
+                    <Button icon="sap-icon://excel-attachment" id="Esporta" press="onExport" type="Emphasized" text="Esporta" />
+                </content>
+            </OverflowToolbar>
+        </headerToolbar>
+        <columns>
+            <Column width="12%">
+                <Label text="Esercizio Decreto" />
+            </Column>
+            <Column width="22%">
+                <Label text="Amminastrazione" />
+            </Column>
+            <Column width="13%">
+                <Label text="Uff. I Livello" />
+            </Column>
+            <Column width="12%">
+                <Label text="Uff. II Livello" />
+            </Column>
+            <Column width="5%">
+                <Label text="N. Decreto" />
+            </Column>
+            <Column width="10%">
+                <Label text="Data Decreto" />
+            </Column>
+            <Column width="12%">
+                <Label text="Ragioneria" />
+            </Column>
+            <Column width="12%">
+                <Label text="Tipologia impegno " />
+            </Column>
+             <Column width="12%">
+                <Label text="Stato Decreto" />
+            </Column>
+        </columns>
+        <ColumnListItem>
+            <!-- <Text text="{tabPreimpNI>Esercizio Decreto}" />
+            <Text text="{tabPreimpNI>Amminastrazione}" />
+            <Text text="{tabPreimpNI>Uff. I Livello}" />
+            <Text text="{tabPreimpNI>Uff. II Livello}" />
+            <Text text="{tabPreimpNI>N. Decreto}" />
+            <Text text="{tabPreimpNI>Data Decreto" />
+            <Text text="{tabPreimpNI>Ragioneria}" />
+            <Text text="{tabPreimpNI>Tipologia impegno" />
+            <Text text="{tabPreimpNI>Stato Decreto}" /> -->
+
+        </ColumnListItem>
+    </Table>
+
+                <!-- <OverflowToolbar id="idAvvio" active="true">
+                                <ToolbarSpacer />
+                                <Button type="Emphasized" text="{i18n>submit}" press="onButtonClick" id="buttonSubmit" />
+                            </OverflowToolbar> -->
+                <!-- <core:Fragment fragmentName="project1.fragment.table" type="XML" />  -->
+
+                <!-- <Table class="sapUiSizeCompact" id="tabGestNI" includeItemInSelection="true" items="{tabGestNI>/}" mode="SingleSelect">
+                    <headerToolbar>
+                        <OverflowToolbar>
+                            <content>
+                                <ToolbarSpacer />
+                                <Button icon="sap-icon://display" id="DettagliNI" press="navToDettagliNI" type="Emphasized" text="Dettagli NI" />
+                                <Button icon="sap-icon://excel-attachment" id="Esporta" press="onExport" type="Emphasized" text="Esporta" />
+                            </content>
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column width="12%">
+                            <Label text="Numero NI" />
+                        </Column>
+                        <Column width="22%">
+                            <Label text="Struttura Amministrativa Responsabile" />
+                        </Column>
+                        <Column width="13%">
+                            <Label text="Posizione Finanziaria" />
+                        </Column>
+                        <Column width="12%">
+                            <Label text="Oggetto della spesa" />
+                        </Column>
+                        <Column width="5%">
+                            <Label text="Mese" />
+                        </Column>
+                        <Column width="10%">
+                            <Label text="Stato NI" />
+                        </Column>
+                        <Column width="12%">
+                            <Label text="Importo Totale NI" />
+                        </Column>
+                    </columns>
+                    <ColumnListItem>
+                        <Text text="{tabPreimpNI>Numero NI}" />
+                        <Text text="{tabPreimpNI>Struttura Amministrativa Responsabile}" />
+                        <Text text="{tabPreimpNI>Posizione Finanziaria}" />
+                        <Text text="{tabPreimpNI>Oggetto della spesa}" />
+                        <Text text="{tabPreimpNI>Mese}" />
+                        <Text text="{tabPreimpNI>Stato NI}" />
+                        <Text text="{tabPreimpNI>Importo Totale NI}" />
+                    </ColumnListItem>
+                </Table> -->
+            </f:content>
+            <f:footer>
+                <OverflowToolbar>
+                    <ToolbarSpacer />
+                    <Button text="{i18n>RegistrazioneDI}" type="Emphasized" press="navToDecreto" />
+                </OverflowToolbar>
+            </f:footer>
+        </f:DynamicPage>
+    </App>
+</mvc:View>

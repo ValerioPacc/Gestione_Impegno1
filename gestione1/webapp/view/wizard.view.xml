@@ -1,0 +1,282 @@
+<mvc:View height="100%" xmlns:f="sap.f" 
+xmlns:form="sap.ui.layout.form"
+ xmlns:l="sap.ui.layout"
+  xmlns:core="sap.ui.core" 
+  xmlns:u="sap.ui.unified"
+   xmlns:mvc="sap.ui.core.mvc" 
+   xmlns="sap.m" 
+   controllerName="gestione1.controller.wizard">
+    <NavContainer id="wizardNavContainer">
+        <f:DynamicPage stickySubheaderProvider="CreateProductWizard" toggleHeaderOnTitleClick="false" class="sapUiNoContentPadding" showFooter="true">
+            <f:title>
+                <f:DynamicPageTitle>
+                    <f:heading>
+                        <Title text="IPE Apertura Dati anagrafico-contabili IPE" />
+                    </f:heading>
+                </f:DynamicPageTitle>
+            </f:title>
+            <f:content>
+                <Wizard id="CreateProductWizard" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" showNextButton="true" navigationChange="handleNavigationChange" renderMode="Page">
+                    <WizardStep id="SelezioneTitoliStep" title="Contratto" validated="true">
+                        <Label text="Con contratto" />
+                        <Switch accessibleNameRef="regularSwitchLabel" customTextOff="No" customTextOn="Si" change="handleChange" />
+                        <Panel height="100%">
+                            <content>
+                                <l:Grid>
+                                    <l:content>
+                                        <VBox>
+                                            <Label text="Esercizio:" />
+                                            <Input value="" />
+                                            <layoutData>
+                                                <l:GridData span="L3 M3 S3" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Label text="Amministrazione:" />
+                                            <Input value="" />
+                                            <layoutData>
+                                                <l:GridData span="L3 M3 S3" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Label text="Numero Contratto:" />
+                                            <Input value="" />
+                                            <layoutData>
+                                                <l:GridData span="L3 M3 S3" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Label text="Data Stipula:" />
+                                            <Input value="" />
+                                            <layoutData>
+                                                <l:GridData span="L3 M3 S3" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Label text="Descizione:" />
+                                            <TextArea value="" width="90%" />
+                                            <layoutData>
+                                                <l:GridData span="L9 M9 S9" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Label text="Beneficiario:" />
+                                            <Input value="" />
+                                            <layoutData>
+                                                <l:GridData span="L3 M3 S3" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Label text="CIG:" />
+                                            <Input value="" />
+                                            <layoutData>
+                                                <l:GridData span="L4 M3 S3" />
+                                            </layoutData>
+                                        </VBox>
+                                          <VBox>
+                                            <Label text="CUP:" />
+                                            <Input value="" />
+                                            <layoutData>
+                                                <l:GridData span="L4 M3 S3" />
+                                            </layoutData>
+                                        </VBox>
+                                         <VBox>
+                                            <Label text="Importo Totale del Contratto:" />
+                                            <Input value="" width="60%" />
+                                            <layoutData>
+                                                <l:GridData span="L6 M3 S3" />
+                                            </layoutData>
+                                        </VBox> 
+                                    </l:content>
+                                </l:Grid>
+                    
+                               <Table class="sapUiSizeCompact" id="tabPreimpNI" includeItemInSelection="true" items="{>/items}" mode="MultiSelect" headerText="Riepilogo Pianificazione Finanziaria">
+            <!-- <OverflowToolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Button icon="sap-icon://display" id="DettagliNI" press="navToDettagliNI" type="Emphasized" text="Dettagli NI" />
+                    <Button icon="sap-icon://excel-attachment" id="Esporta" press="onExport" type="Emphasized" text="Esporta" />
+                </content>
+            </OverflowToolbar> -->
+        
+        <columns>
+            <Column width="12%">
+                <Label text="Esercizio" />
+            </Column>
+            <Column width="18%">
+                <Label text="Posizione Finanziaria" />
+            </Column>
+            <Column width="12%">
+                <Label text="N. PNI" />
+            </Column>
+            <Column width="12%">
+                <Label text="Descrizione PNI" />
+            </Column>
+            <Column width="13%">
+                <Label text="Importi Impegnabili" />
+            </Column>
+        </columns>
+        <ColumnListItem>
+            <Text text="{tabPreimpNI>Numero NI}" />
+            <Text text="{tabPreimpNI>Struttura Amministrativa Responsabile}" />
+            <Text text="{tabPreimpNI>Posizione Finanziaria}" />
+            <Text text="{tabPreimpNI>Oggetto della spesa}" />
+            <Text text="{tabPreimpNI>Mese}" />
+        </ColumnListItem>
+        
+            </Table>
+                 </content>
+                    </Panel>
+                        <!-- <form:SimpleForm editable="true" layout="ColumnLayout" labelSpanL="6" labelSpanM="6" emptySpanL="0" emptySpanM="0" columnsL="4" columnsM="4">
+                            
+                            <Label text="Esercizio"/>
+                            <Input id="esercizio" value="{Esercizio}" />
+                            
+                            <Label text="Street/No." />
+                            <Input value="{Street}" />
+                            <Input value="{HouseNumber}"/>
+
+                            <Label text="" />
+                            <Input value=""/>
+
+                            <Label text="" />
+                            <Input value=""/>
+
+                             <Label text="Amministrazione" />
+                            <Input value="{Amm}"/>
+
+                             <Label text="ZIP Code/City" />
+                            <Input value="{ZIPCode}"/>
+
+                             <Label text="ZIP Code/City" />
+                            <Input value="{ZIPCode}"/>
+
+                             <Label text="ZIP Code/City" />
+                            <Input value="{ZIPCode}"/>
+
+                             <Label text="ZIP Code/City" />
+                            <Input value="{ZIPCode}"/>
+
+                             <Label text="ZIP Code/City" />
+                            <Input value="{ZIPCode}"/> -->
+                        <!-- <Label text="Esercizio di Gestione" required="true" />
+                            <MultiComboBox id="es_gestione" items="{contrattiModel>/}" selectionFinish="onSelectionFinish">
+                                <core:Item id="es_gestione1" key="{contrattiModel>code}" text="{contrattiModel>code} {contrattiModel>desc}" />
+                            </MultiComboBox>
+                            <Label text="Mese" required="true" />
+                            <MultiComboBox id="mese">
+                                <core:Item id="mese1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
+                            </MultiComboBox> -->
+                        <!--<Label text="Tipologia" />
+                            <MultiInput id="tipologia" showValueHelp="false" />
+                            <Label text="Sotto Tipologia" />
+                            <MultiComboBox id="ST">
+                                <core:Item id="ST1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
+                            </MultiComboBox>
+                            <Label text="Competenza/Residui" editable="true" />
+                            <MultiComboBox id="competenza">
+                                <core:Item id="competenza1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" selectedKey="Competenza" />
+                            </MultiComboBox> -->
+                        <!-- </form:SimpleForm> -->
+                       <OverflowToolbar>
+            <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
+            <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
+            <ToolbarSpacer />
+            <Button type="Emphasized" text="Salva in bozza" visible="{/PNIButtonVisible}" />
+        </OverflowToolbar>
+                    </WizardStep>
+                    <WizardStep id="APFStep" validated="true" title="Beneficiario" activate="additionalInfoValidation">
+                        <form:SimpleForm id="SimpleFormChange480_12120" editable="true" layout="ResponsiveGridLayout"
+                            labelSpanXL="4"
+                            labelSpanL="4"
+                            labelSpanM="12"
+                            labelSpanS="12"
+                            adjustLabelSpan="false"
+                            emptySpanXL="0"
+                            emptySpanL="0"
+                            emptySpanM="0"
+                            emptySpanS="0"
+                            columnsXL="2"
+                            columnsL="2"
+                            columnsM="1"
+                            singleContainerFullSize="false"
+                        >
+                             <Panel height="100%">
+                                <!-- <Label text="Struttura Amministrativa Responsabile" editable="true" />
+                                <MultiComboBox id="SAR">
+                                    <core:Item id="SAR1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" selectedKey="Competenza" />
+                                </MultiComboBox>
+                            </form:content>
+                        </form:SimpleForm>
+                        <form:SimpleForm id="SimpleFormChange480_12120-2" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false">
+                            <form:content>
+                                <Label text="Posizione Finanziaria" editable="true" />
+                                <MultiComboBox id="PF">
+                                    <core:Item id="PF1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" selectedKey="Competenza" />
+                                </MultiComboBox>
+                                <Label text="Descrizione Capitolo" />
+                                <MultiInput id="DescrC" showValueHelp="false" />
+                                <Label text="Descrizione PG" />
+                                <MultiInput id="DPG" showValueHelp="false" /> -->
+                             </Panel>
+                        </form:SimpleForm>
+                    </WizardStep>
+
+                    <!-- <WizardStep id="DatiNIStep" validated="true" activate="optionalStepActivation" title="Dati NI">
+                        <form:SimpleForm editable="true">
+                            <Label text="Importo Totale NI" />
+                            <MultiInput id="ITNI" showValueHelp="false" />
+                            <Label text="Mese di riferimento" />
+                            <MultiInput id="MeseR" showValueHelp="false" />
+                            <Label text="Oggetto della Spesa" />
+                            <MultiInput id="oggSpesa" showValueHelp="false" required="true" />
+                            <Label text="Tipo tesoreria" />
+                            <MultiInput id="TT" showValueHelp="false" />
+                        </form:SimpleForm> -->
+                    <!-- <Table class="sapUiSizeCompact" id="tabGestNI" includeItemInSelection="true" items="{tabGestNI>/}">
+                                <columns>
+                        <Column width="10%">
+                                        <Label text="{tabGestNI>Codice ISN}" />
+                                    </Column>
+                        <Column width="10%">
+                                        <Label text="{tabGestNI>Tipologia}" />
+                                    </Column>
+                        <Column width="10%">
+                                        <Label text="{tabGestNI>Sottotipologia}" />
+                                    </Column>
+                        <Column width="13%">
+                                        <Label text="{tabGestNI>Tasso di interesse}" />
+                                    </Column>
+                        <Column width="10%">
+                                        <Label text="{tabGestNI>Data inizio}" />
+                                    </Column>
+                        <Column width="13%">
+                                        <Label text="{tabGestNI>Data scadenza}" />
+                                    </Column>
+                        <Column width="13%">
+                                        <Label text="{tabGestNI>Data pagamento}" />
+                                    </Column>
+                        <Column width="4%">
+                                        <Label text="{tabGestNI>C/R}" />
+                                    </Column>
+                        <Column width="10%">
+                                        <Label text="{tabGestNI>Importo titolo}" />
+                                    </Column>
+                        </columns>
+                                <ColumnListItem press="onPress" type="Navigation" />
+                            </Table> -->
+                    <!-- </WizardStep> -->
+                </Wizard>
+            </f:content>
+
+            <f:footer>
+                <!-- <OverflowToolbar>
+                    <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
+                    <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
+                    <ToolbarSpacer />
+                    <Button type="Emphasized" text="Preimposta NI" visible="{/PNIButtonVisible}" press="onAcceptDati" id="PreimpostaNI" />
+                </OverflowToolbar> -->
+            </f:footer>
+        </f:DynamicPage>
+    </NavContainer>
+</mvc:View>

@@ -1,0 +1,85 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:u="sap.ui.unified"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:menu="sap.m.MenuItem"
+    xmlns:menBtn="sap.m.Menu"
+    height="100%"
+    controllerName="gestione1.controller.Decreto"
+>
+    <App id="app">
+        <f:DynamicPage showFooter="true">
+            <!-- <f:title>
+                <f:DynamicPageTitle>
+                    <f:heading>
+                        <Title text="{i18n>nome_app}" />
+                    </f:heading>
+                </f:DynamicPageTitle>
+            </f:title> -->
+            <f:header>
+                <f:DynamicPageHeader pinnable="false">
+                    <fb:FilterBar showClearOnFB="false" showFilterConfiguration="false" useToolbar="false" onClick="showFragment" showGoButton="false">
+                        <fb:filterGroupItems>
+                        <fb:FilterGroupItem groupName="__$INTERNAL$" name="TypeI" label="{i18n>typeI}" tooltip="suggestion" visibleInFilterBar="true" mandatory="true">
+                                <fb:control>
+                                    <MultiComboBox id="typeI" items="{contrattiModel>/}" selectionFinish="onSelectionFinish">
+                                        <core:Item id="typeI1" key="{contrattiModel>code}" text="{contrattiModel>code} {contrattiModel>desc}" />
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem groupName="__$INTERNAL$" name="Esercizio" label="{i18n>esercizio}" tooltip="suggestion" visibleInFilterBar="true" mandatory="true">
+                                <fb:control>
+                                    <MultiComboBox id="esercizio" items="{contrattiModel>/}" selectionFinish="onSelectionFinish">
+                                        <core:Item id="esercizio1" key="{contrattiModel>code}" text="{contrattiModel>code} {contrattiModel>desc}" />
+                                    </MultiComboBox>
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem groupName="__$INTERNAL$" id="amministrazioneED" visibleInFilterBar="true" name="amministrazioneED" label="{i18n>amministrazioneED}" mandatory="true">
+                                <fb:control>
+                                    <MultiInput id="amministrazioneED1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem id="UffApp" visibleInFilterBar="true" name="UffApp" groupName="Group1" label="{i18n>UffApp}">
+                                <fb:control>
+                                    <MultiInput id="UffApp1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="DataDE" visibleInFilterBar="true" name="DataDE" groupName="Group1" label="{i18n>dataDE}">
+                                <fb:control>
+                                    <DatePicker id="DataDE1" displayFormat="dd/MM/yyyy" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+							<fb:FilterGroupItem id="numProtocolloAmma" visibleInFilterBar="true" name="numProtocolloAmma" groupName="Group1" label="{i18n>numProtocolloAmma}">
+                                <fb:control>
+                                    <MultiInput id="numProtocolloAmma1" showValueHelp="false" />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem id="dataProtocolloAmm" visibleInFilterBar="true" name="dataProtocolloAmm" groupName="Group1" label="{i18n>dataProtocolloAmm}">
+                                <fb:control>
+                                    <DatePicker id="dataProtocolloAmm1" displayFormat="dd/MM/yyyy" />
+                                </fb:control>
+                                </fb:FilterGroupItem>
+                        </fb:filterGroupItems>
+                    </fb:FilterBar>
+                    <CheckBox text="Controllo preventivo Corte dei conti" selected="true" wrapping="true" />
+                </f:DynamicPageHeader>
+            </f:header>
+
+            <f:content>
+             </f:content>
+            <f:footer>
+                <OverflowToolbar>
+                    <Button type="Emphasized" text="{i18n>Indietro}" press="onBackButton" />
+                    <ToolbarSpacer/>
+                    <Button type="Emphasized" text="{i18n>SalvaBozza}" press="navToRegistraIPE" />
+                </OverflowToolbar>
+            </f:footer>
+        </f:DynamicPage>
+    </App>
+</mvc:View>
