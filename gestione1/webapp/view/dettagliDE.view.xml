@@ -1,0 +1,52 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:u="sap.ui.unified"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:menu="sap.m.MenuItem"
+    xmlns:menBtn="sap.m.Menu"
+    height="100%"
+    controllerName="gestione1.controller.dettagliDE"
+>
+    <f:DynamicPage id="dynamicPageId" showFooter="true">
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <layout:HorizontalLayout allowWrapping="true">
+                    <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                        <ObjectAttribute title="Location" text="Warehouse A" />
+                        <ObjectAttribute title="Halway" text="23L" />
+                        <ObjectAttribute title="Rack" text="34" />
+                    </layout:VerticalLayout>
+
+                    <layout:VerticalLayout>
+                        <ObjectAttribute title="Availability" />
+                        <ObjectStatus text="In Stock" state="Success" />
+                    </layout:VerticalLayout>
+                </layout:HorizontalLayout>
+
+                <OverflowToolbar>
+                    <ToolbarSpacer />
+                    <Button text="Associa Impegno" type="Emphasized" press="pressAssociaImpegno" />
+                    <Button text="Rettifica NI" type="Emphasized" press="pressRettificaNI" />
+                </OverflowToolbar>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <IconTabBar>
+                <items>
+                </items>
+            </IconTabBar>
+            
+        </f:content>
+        <f:footer>
+            <OverflowToolbar>
+               
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>

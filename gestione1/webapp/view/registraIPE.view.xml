@@ -1,0 +1,64 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:u="sap.ui.unified"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:layout="sap.ui.layout"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:f="sap.f"
+    xmlns:core="sap.ui.core"
+    xmlns:menu="sap.m.MenuItem"
+    xmlns:menBtn="sap.m.Menu"
+    height="100%"
+    controllerName="gestione1.controller.registraIPE"
+>
+    <f:DynamicPage id="dynamicPageId" showFooter="true">
+        <f:header>
+            <f:DynamicPageHeader pinnable="false">
+                <layout:HorizontalLayout allowWrapping="true">
+                    <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                        <ObjectAttribute title="Dati Decreto" />
+                        <ObjectAttribute text="Esercizio Decreto 2023" />
+                    </layout:VerticalLayout>
+                </layout:HorizontalLayout>
+            </f:DynamicPageHeader>
+        </f:header> 
+    
+        
+        
+            <!-- <IconTabBar id="idIconTabBar" class="sapUiResponsiveContentPadding" >
+    <items>
+    
+                    <IconTabFilter icon="sap-icon://detail-view" text="Lista Dettagli" >
+                    </IconTabFilter>
+                    </items>
+    </IconTabBar> -->
+       
+          <f:content>
+                        <Toolbar>
+                            <Button align="Center" type="Emphasized" text="Registra IPE Apertura" width="33%" press="navToWizard"/>
+                            <ToolbarSpacer />
+                            <Button align="Center" type="Emphasized" text="Registra IPE di Variazione" width="33%" />
+                            <ToolbarSpacer />
+                            <Button align="Center" type="Emphasized" text="Registra Atto di Annullamento" width="33%" />
+                        </Toolbar> 
+                        
+            <!-- <Toolbar >
+        <Button align="Center" type="Emphasized"  text="Registra IPE Apertura" width="33%" />
+        <ToolbarSpacer/>
+        <Button align="Center" type="Emphasized"  text="Registra IPE di Variazione" width="33%" />
+        <ToolbarSpacer/>
+        <Button align="Center" type="Emphasized"  text="Registra Atto di Annullamento" width="33%" />
+        </Toolbar> -->
+</f:content>
+        
+        <f:footer>
+            <OverflowToolbar>
+                <Button type="Emphasized" text="{i18n>Indietro}" press="onBackButton" />
+                <ToolbarSpacer/>
+                <Button type="Emphasized" text="{i18n>RegDEprov}" press="onBackButton" />
+            </OverflowToolbar>
+        </f:footer>
+    </f:DynamicPage>
+</mvc:View>
