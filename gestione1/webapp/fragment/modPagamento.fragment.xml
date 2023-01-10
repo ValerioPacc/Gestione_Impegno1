@@ -66,6 +66,6 @@
                             <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
                             <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
                             <ToolbarSpacer />
-                            <Button type="Emphasized" text="Salva in bozza" visible="{/PNIButtonVisible}" />
+                            <Button type="Emphasized" text="Salva" visible="{/PNIButtonVisible}" press="onOpenFragmentBusyDialog" ariaHasPopup="Dialog"/>
                         </OverflowToolbar>
 </core:FragmentDefinition>

@@ -1,9 +1,10 @@
 sap.ui.define(
   [
-    "sap/ui/core/mvc/Controller",
-    "./BaseController"
+    "./BaseController",
+    "sap/ui/core/Fragment",
+    "sap/ui/core/syncStyleClass"
   ],
-  function (BaseController) {
+  function (BaseController,Fragment,syncStyleClass) {
     "use strict";
 
     return BaseController.extend("gestione1.controller.wizard", {
@@ -59,8 +60,8 @@ sap.ui.define(
         }
         this._iSelectedStepIndex--
         this._oSelectedStep = oNextStep;
-        this.controlPreNI();
-        this.controlHeader()
+        // this.controlPreNI();
+        // this.controlHeader()
     },
 
     onNextButton: function () {
@@ -82,14 +83,50 @@ sap.ui.define(
         this._iSelectedStepIndex++;
         this._oSelectedStep = oNextStep;
         // console.log(this._iSelectedStepIndex)
-        this.controlPreNI()
-        this.controlHeader()
+        // this.controlPreNI()
+        // this.controlHeader()
         //this.getView().byId("tabGestNI").setVisible(false);
     },
 
       navToAnagrafica: function (oEvent) {
         this.getOwnerComponent().getRouter().navTo("anagrafica");
     },
+
+    onWarning2MessageBoxPress: function () {
+      sap.m.MessageBox.warning("bbbbbbbbbbbbbbb", {
+        title: "aaaaaaaa",                                    // default
+        onClose: null,                                       // default
+        styleClass: "",                                      // default
+        actions: null,                 // default
+        emphasizedAction: null,        // default
+        initialFocus: null,                                  // default
+        textDirection: sap.ui.core.TextDirection.Inherit     // default
+    });
+  },
+
+  onOpenFragmentBusyDialog: function () {
+    // load BusyDialog fragment asynchronously
+    if (!this._pBusyDialog) {
+      this._pBusyDialog = Fragment.load({
+        name: "gestione1.fragment.BusyDialog",
+        controller: this
+      }).then(function (oBusyDialog) {
+        this.getView().addDependent(oBusyDialog);
+        syncStyleClass("sapUiSizeCompact", this.getView(), oBusyDialog);
+        return oBusyDialog;
+      }.bind(this));
+    }
+
+    this._pBusyDialog.then(function(oBusyDialog) {
+      oBusyDialog.open();
+    }.bind(this));
+  }
+
+
+
+
     });
   }
 );
+
+
