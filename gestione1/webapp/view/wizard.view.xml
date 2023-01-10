@@ -124,7 +124,7 @@
                     <WizardStep id="Beneficiario1" validated="true" title="Beneficiario" activate="additionalInfoValidation"  >
                    <Toolbar>
                    <ToolbarSpacer/>
-				<Button type="Emphasized" text="Richiedi Anagrafica Beneficiario" press="navToAnagrafica" />
+				<Button type="Emphasized" text="Richiedi Anagrafica Beneficiario" />
 				<Button type="Emphasized" text="Inserisci Mod.Pag.-Iban" />
                 </Toolbar>
                          <RadioButtonGroup id="GroupA" columns="3" width="100%">
@@ -159,31 +159,44 @@
                              
                              </form:SimpleForm>
                              <VBox>
-                           <Panel >
+                           <Panel>
                            	
-			<FlexBox
+			<VBox
                 class="columns"
 				height="100px"
 				alignItems="Center"
 				justifyContent="Start" direction="Column">
-				 <Label text="Codice Fiscale:" />
+				 <HBox>
+                 <Label text="Codice Fiscale:" />
                  <Input id="cFiscale" />
+                 <Label text="Codice Fiscale Estero:" />
+                 <Input id="cFiscaleE" />
+                 </HBox>
+                 
+                 <HBox>
                  <Label text="Nome:" required="true" />
-                 <Input id="nome" />     
+                 <Input id="nome" />  
+                 <Label text="Cognome:" required="true" />
+                 <Input id="cognome" /> 
+                 </HBox>
+               
+                 <HBox>  
 				 <Label text="Ragione Sociale:" required="true" />
                  <Input id="rSociale" />
-								</FlexBox>
-
-							<FlexBox alignItems="End" justifyContent="Start" direction="Column">
-
-				 <Label text="Codice Fiscale Estero:" />
-                 <Input id="cFiscaleE" />
-                 <Label text="Cognome:" required="true" />
-                 <Input id="cognome" />     
-				 <Label text="Partita IVA:" required="true" />
+                 <Label text="Partita IVA:" required="true" />
                  <Input id="IVA" />
+                 </HBox>
+                 </VBox>
+                 <!-- <HBox alignItems="End" justifyContent="Start" direction="Column">
+
+
+                      
+				 
                  	
-			</FlexBox>
+			</HBox> -->
+								
+
+							
              
 
 		</Panel>
@@ -200,7 +213,8 @@
                             <Switch accessibleNameRef="regularSwitchLabel" customTextOff="No" customTextOn="Si" change="handleChange" />
                             <Label text="ID Richiesta Assenso Preventivo:" />
                             <MultiInput id="IdAssPre"  key="{respModel>matricola}" editable="false" text="{respModel>cognome} {respModel>nome} {respModel>matricola}"  />
-                        </HBox> 
+                        </HBox>
+                        <VBox>
                         <HBox>
                             <Label text="Posizione Finanziaria:"  />
                             <MultiInput id="IdPosFin"   key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" required="true"/>
@@ -208,6 +222,7 @@
                             <Label text="Oggetto della Spesa" />
                             <MultiInput id="oggSpesa" showValueHelp="false" required="true" />
                             </HBox>
+                            </VBox>
                             <Label text="Tipo tesoreria" />
                             <MultiInput id="TT" showValueHelp="false" />
                         </form:SimpleForm>

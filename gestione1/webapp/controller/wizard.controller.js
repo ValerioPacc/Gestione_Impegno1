@@ -87,9 +87,7 @@ sap.ui.define(
         //this.getView().byId("tabGestNI").setVisible(false);
     },
 
-      navToAnagrafica: function (oEvent) {
-        this.getOwnerComponent().getRouter().navTo("anagrafica");
-    },
+     
     });
   }
 );
