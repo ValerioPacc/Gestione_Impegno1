@@ -14,17 +14,15 @@
     controllerName="gestione1.controller.View1"
 >
     <App id="app">
-        <f:DynamicPage showFooter="true">
-            <!-- <f:title>
+        <f:DynamicPage showFooter="true" >
+            <f:title>
                 <f:DynamicPageTitle>
-                    <f:heading>
-                        <Title text="{i18n>nome_app}" />
-                    </f:heading>
+                   
                 </f:DynamicPageTitle>
-            </f:title> -->
+            </f:title>
             <f:header>
-                <f:DynamicPageHeader pinnable="false">
-                    <fb:FilterBar showClearOnFB="false" showFilterConfiguration="false" useToolbar="false" onClick="showFragment" id="filterID">
+                <f:DynamicPageHeader pinnable="true">
+                    <fb:FilterBar showClearOnFB="false" showFilterConfiguration="false" useToolbar="false"  id="filterID">
                         <fb:filterGroupItems>
 							<fb:FilterGroupItem groupName="__$INTERNAL$" name="Esercizio" label="{i18n>es_decreto}" tooltip="suggestion" visibleInFilterBar="true" mandatory="true">
                                 <fb:control>
@@ -225,68 +223,15 @@
             </f:header>
 
             <f:content>
-            <Table class="sapUiSizeCompact" id="tab" includeItemInSelection="true" >
-        <headerToolbar>
-        
-            <OverflowToolbar>
-                <content>
-                <Title text="Lista Decreti"/>
-                    <ToolbarSpacer />
-                    <Button icon="sap-icon://display" id="DettagliDE" type="Emphasized" text="Dettagli Decreto di Impegno" press="navToDettagliDE" />
-                    <Button icon="sap-icon://excel-attachment" id="Esporta" press="onExport" type="Emphasized" text="Esporta" />
-                </content>
-            </OverflowToolbar>
-        </headerToolbar>
-        <columns>
-            <Column width="14%">
-                <Label text="Esercizio Decreto" />
-            </Column>
-            <Column width="12%">
-                <Label text="Amminastrazione" />
-            </Column>
-            <Column width="12%">
-                <Label text="Uff. I Livello" />
-            </Column>
-            <Column width="12%">
-                <Label text="Uff. II Livello" />
-            </Column>
-            <Column width="12%">
-                <Label text="N. Decreto" />
-            </Column>
-            <Column width="10%">
-                <Label text="Data Decreto" />
-            </Column>
-            <Column width="10%">
-                <Label text="Ragioneria" />
-            </Column>
-            <Column width="14%">
-                <Label text="Tipologia impegno " />
-            </Column>
-             <Column width="12%">
-                <Label text="Stato Decreto" />
-            </Column>
-        </columns>
-        <ColumnListItem>
-            <!-- <Text text="{tabPreimpNI>Esercizio Decreto}" />
-            <Text text="{tabPreimpNI>Amminastrazione}" />
-            <Text text="{tabPreimpNI>Uff. I Livello}" />
-            <Text text="{tabPreimpNI>Uff. II Livello}" />
-            <Text text="{tabPreimpNI>N. Decreto}" />
-            <Text text="{tabPreimpNI>Data Decreto" />
-            <Text text="{tabPreimpNI>Ragioneria}" />
-            <Text text="{tabPreimpNI>Tipologia impegno" />
-            <Text text="{tabPreimpNI>Stato Decreto}" /> -->
-
-        </ColumnListItem>
-    </Table>
-
+            <core:Fragment fragmentName="gestione1.fragment.listaDE" type="XML"  /> 
             </f:content>
-            <f:footer>
+             <f:footer>
                 <OverflowToolbar>
                     <ToolbarSpacer />
                     <Button text="{i18n>RegistrazioneDI}" type="Emphasized" press="navToDecreto" />
                 </OverflowToolbar>
             </f:footer>
+     
         </f:DynamicPage>
     </App>
 </mvc:View>

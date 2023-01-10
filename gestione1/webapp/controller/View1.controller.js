@@ -19,7 +19,8 @@ sap.ui.define([
 
 
 					var oButton = oEvent.srcControl._oSearchButton;
-					oButton.setText(oResourceBundle.getText("Avvio"));
+					oButton.setText(oResourceBundle.getText("Avvio"));         
+                       
 				}
 			});
                 // var oModel = new sap.ui.model.json.JSONModel("../mockdata/tabPreimpNI.json");
@@ -32,6 +33,7 @@ sap.ui.define([
             navToDettagliDE: function (oEvent) {
                 this.getOwnerComponent().getRouter().navTo("dettagliDE");
             },
-
+         
+    
         });
     });

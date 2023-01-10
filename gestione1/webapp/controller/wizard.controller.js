@@ -37,10 +37,59 @@ sap.ui.define(
         // var fieldReq = oModel.getProperty(setReqField)
         // console.log("field set required: "+fieldReq)
 
+      },
 
+      onBackButton: function () {
+        this._oWizard = this.byId("CreateProductWizard");
+        this._oSelectedStep = this._oWizard.getSteps()[this._iSelectedStepIndex];
+        this._iSelectedStepIndex = this._oWizard.getSteps().indexOf(this._oSelectedStep);
+        //console.log(this._iSelectedStepIndex)
+        if (this._iSelectedStepIndex == 0) {
+            //console.log(this.getOwnerComponent().getRouter().navTo("View1"))
+            this._iSelectedStepIndex = 0
+            this.getOwnerComponent().getRouter().navTo("View1");
+            this.getView().byId("HeaderNIW").setVisible(false);
+            return;
+        }
+        var oNextStep = this._oWizard.getSteps()[this._iSelectedStepIndex - 1];
+        if (this._oSelectedStep && !this._oSelectedStep.bLast) {
+            this._oWizard.goToStep(oNextStep, true);
+        } else {
+            this._oWizard.previousStep();
+        }
+        this._iSelectedStepIndex--
+        this._oSelectedStep = oNextStep;
+        this.controlPreNI();
+        this.controlHeader()
+    },
 
+    onNextButton: function () {
+        // this.onSearch()
+        // this.onCommunicationPress()
+        // var oModelP = new sap.ui.model.json.JSONModel("../mockdata/tabGestNI.json");
+        // this.getView().setModel(oModelP, "HeaderNIW");
+        this._oWizard = this.byId("CreateProductWizard");
+        this._oSelectedStep = this._oWizard.getSteps()[this._iSelectedStepIndex];
+        this._iSelectedStepIndex = this._oWizard.getSteps().indexOf(this._oSelectedStep);
+        var oNextStep = this._oWizard.getSteps()[this._iSelectedStepIndex + 1];
 
-      }
+        if (this._oSelectedStep && !this._oSelectedStep.bLast) {
+            this._oWizard.goToStep(oNextStep, true);
+        } else {
+            this._oWizard.nextStep();
+        }
+
+        this._iSelectedStepIndex++;
+        this._oSelectedStep = oNextStep;
+        // console.log(this._iSelectedStepIndex)
+        this.controlPreNI()
+        this.controlHeader()
+        //this.getView().byId("tabGestNI").setVisible(false);
+    },
+
+      navToAnagrafica: function (oEvent) {
+        this.getOwnerComponent().getRouter().navTo("anagrafica");
+    },
     });
   }
 );

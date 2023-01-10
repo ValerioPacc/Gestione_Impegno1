@@ -119,57 +119,7 @@
                                 </Table>
                             </content>
                         </Panel>
-                        <!-- <form:SimpleForm editable="true" layout="ColumnLayout" labelSpanL="6" labelSpanM="6" emptySpanL="0" emptySpanM="0" columnsL="4" columnsM="4">
-                            
-                            <Label text="Esercizio"/>
-                            <Input id="esercizio" value="{Esercizio}" />
-                            
-                            <Label text="Street/No." />
-                            <Input value="{Street}" />
-                            <Input value="{HouseNumber}"/>
-
-                            <Label text="" />
-                            <Input value=""/>
-
-                            <Label text="" />
-                            <Input value=""/>
-
-                             <Label text="Amministrazione" />
-                            <Input value="{Amm}"/>
-
-                             <Label text="ZIP Code/City" />
-                            <Input value="{ZIPCode}"/>
-
-                             <Label text="ZIP Code/City" />
-                            <Input value="{ZIPCode}"/>
-
-                             <Label text="ZIP Code/City" />
-                            <Input value="{ZIPCode}"/>
-
-                             <Label text="ZIP Code/City" />
-                            <Input value="{ZIPCode}"/>
-
-                             <Label text="ZIP Code/City" />
-                            <Input value="{ZIPCode}"/> -->
-                        <!-- <Label text="Esercizio di Gestione" required="true" />
-                            <MultiComboBox id="es_gestione" items="{contrattiModel>/}" selectionFinish="onSelectionFinish">
-                                <core:Item id="es_gestione1" key="{contrattiModel>code}" text="{contrattiModel>code} {contrattiModel>desc}" />
-                            </MultiComboBox>
-                            <Label text="Mese" required="true" />
-                            <MultiComboBox id="mese">
-                                <core:Item id="mese1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
-                            </MultiComboBox> -->
-                        <!--<Label text="Tipologia" />
-                            <MultiInput id="tipologia" showValueHelp="false" />
-                            <Label text="Sotto Tipologia" />
-                            <MultiComboBox id="ST">
-                                <core:Item id="ST1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
-                            </MultiComboBox>
-                            <Label text="Competenza/Residui" editable="true" />
-                            <MultiComboBox id="competenza">
-                                <core:Item id="competenza1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" selectedKey="Competenza" />
-                            </MultiComboBox> -->
-                        <!-- </form:SimpleForm> -->
+                       
                         <OverflowToolbar>
                             <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
                             <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
@@ -180,7 +130,7 @@
                     <WizardStep id="Beneficiario1" validated="true" title="Beneficiario" activate="additionalInfoValidation"  >
                    <Toolbar>
                    <ToolbarSpacer/>
-				<Button type="Emphasized" text="Richiedi Anagrafica Beneficiario" />
+				<Button type="Emphasized" text="Richiedi Anagrafica Beneficiario" press="navToAnagrafica" />
 				<Button type="Emphasized" text="Inserisci Mod.Pag.-Iban" />
                 </Toolbar>
                          <RadioButtonGroup id="GroupA" columns="3" width="100%">
@@ -244,22 +194,6 @@
 
 		</Panel>
         </VBox>
-                                <!-- <Label text="Struttura Amministrativa Responsabile" editable="true" />
-                                <MultiComboBox id="SAR">
-                                    <core:Item id="SAR1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" selectedKey="Competenza" />
-                                </MultiComboBox>
-                            </form:content>
-                        </form:SimpleForm>
-                        <form:SimpleForm id="SimpleFormChange480_12120-2" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="4" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="2" columnsM="1" singleContainerFullSize="false">
-                            <form:content>
-                                <Label text="Posizione Finanziaria" editable="true" />
-                                <MultiComboBox id="PF">
-                                    <core:Item id="PF1" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" selectedKey="Competenza" />
-                                </MultiComboBox>
-                                <Label text="Descrizione Capitolo" />
-                                <MultiInput id="DescrC" showValueHelp="false" />
-                                <Label text="Descrizione PG" />
-                                <MultiInput id="DPG" showValueHelp="false" /> -->
                              <core:Fragment fragmentName="gestione1.fragment.modPagamento" type="XML" />
                        
                     </WizardStep>
@@ -283,40 +217,55 @@
                             <Label text="Tipo tesoreria" />
                             <MultiInput id="TT" showValueHelp="false" />
                         </form:SimpleForm>
+                         <OverflowToolbar>
+                            <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
+                            <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
+                        </OverflowToolbar>
                         </WizardStep>
-                    <!-- <Table class="sapUiSizeCompact" id="tabGestNI" includeItemInSelection="true" items="{tabGestNI>/}">
-                                <columns>
-                        <Column width="10%">
-                                        <Label text="{tabGestNI>Codice ISN}" />
-                                    </Column>
-                        <Column width="10%">
-                                        <Label text="{tabGestNI>Tipologia}" />
-                                    </Column>
-                        <Column width="10%">
-                                        <Label text="{tabGestNI>Sottotipologia}" />
-                                    </Column>
-                        <Column width="13%">
-                                        <Label text="{tabGestNI>Tasso di interesse}" />
-                                    </Column>
-                        <Column width="10%">
-                                        <Label text="{tabGestNI>Data inizio}" />
-                                    </Column>
-                        <Column width="13%">
-                                        <Label text="{tabGestNI>Data scadenza}" />
-                                    </Column>
-                        <Column width="13%">
-                                        <Label text="{tabGestNI>Data pagamento}" />
-                                    </Column>
-                        <Column width="4%">
-                                        <Label text="{tabGestNI>C/R}" />
-                                    </Column>
-                        <Column width="10%">
-                                        <Label text="{tabGestNI>Importo titolo}" />
-                                    </Column>
-                        </columns>
-                                <ColumnListItem press="onPress" type="Navigation" />
-                            </Table> -->
-                    <!-- </WizardStep> -->
+
+                        <WizardStep id="idAttoAuth" validated="true" activate="optionalStepActivation" title="Atto Autorizzativo">
+                   
+                        <form:SimpleForm editable="true">
+                        <HBox>
+                           
+                        </HBox> 
+                        <HBox>
+                        </HBox>
+                            
+                        </form:SimpleForm>
+                        </WizardStep>
+
+                        <WizardStep id="idTipoSpesa" validated="true" activate="optionalStepActivation" title="Tipologia ordinazione della spesa">
+                   
+                        <form:SimpleForm editable="true">
+                        <HBox>
+                           
+                        </HBox> 
+                        <HBox>
+                        </HBox>
+                            
+                        </form:SimpleForm>
+                        <OverflowToolbar>
+                            <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
+                            <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
+                        </OverflowToolbar>
+                        </WizardStep>
+                    
+                    <WizardStep id="EsigiId" validated="true" activate="optionalStepActivation" title="Esigibilità">
+                   
+                        <form:SimpleForm editable="true">
+                        <HBox>
+                           
+                        </HBox> 
+                        <HBox>
+                        </HBox>
+                            
+                        </form:SimpleForm>
+                        <OverflowToolbar>
+                            <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
+                            <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
+                        </OverflowToolbar>
+                        </WizardStep>
                 </Wizard>
             </f:content>
 

@@ -126,7 +126,14 @@
       "titleTarget": "",
       "greedy": false,
       "target": "TargetdettagliDE"
-  }
+  },
+  {
+    "name": "anagrafica",
+    "pattern": "anagrafica",
+    "titleTarget": "",
+    "greedy": false,
+    "target": "Targetanagrafica"
+}
       ],
       "targets": {
         "TargetView1": {
@@ -167,6 +174,14 @@
 					"clearControlAggregation": false,
           "viewId": "dettagliDE",
 					"viewName": "dettagliDE",
+          "viewLevel": 1
+				},
+        "Targetanagrafica": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+          "viewId": "anagrafica",
+					"viewName": "anagrafica",
           "viewLevel": 1
 				}
     
