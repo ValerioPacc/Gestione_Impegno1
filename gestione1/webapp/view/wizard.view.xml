@@ -84,13 +84,7 @@
                                 </l:Grid>
 
                                 <Table class="sapUiSizeCompact" id="tabPreimpNI" includeItemInSelection="true" items="{>/items}" headerText="Riepilogo Pianificazione Finanziaria">
-                                    <!-- <OverflowToolbar>
-                <content>
-                    <ToolbarSpacer />
-                    <Button icon="sap-icon://display" id="DettagliNI" press="navToDettagliNI" type="Emphasized" text="Dettagli NI" />
-                    <Button icon="sap-icon://excel-attachment" id="Esporta" press="onExport" type="Emphasized" text="Esporta" />
-                </content>
-            </OverflowToolbar> -->
+                                  
 
                                     <columns>
                                         <Column width="12%">
