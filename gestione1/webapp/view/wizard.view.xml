@@ -8,11 +8,52 @@
                     </f:heading>
                 </f:DynamicPageTitle>
             </f:title>
+            <f:header>
+                <f:DynamicPageHeader id="h1" pinnable="false">
+                    <l:HorizontalLayout allowWrapping="true">
+                        <l:VerticalLayout class="sapUiMediumMarginEnd" visible="{/header1Visible}">
+                            <HBox id="idHBox1">
+                                <VBox id="idIpeH" class="sapUiSmallMargin" width="50%">
+                                    <Label id="IpeH" text="{i18n>Ipe}" design="Bold"/>
+                                    <Text id="Ipe1H" text="{}"/>
+                                </VBox>
+                                <VBox id="idVBox1" class="sapUiSmallMargin" width="50%">
+                                    <Label id="Eserecizio1" text="{i18n>esercizio}" design="Bold"/>
+                                    <Text id="eserecizio1" text="{}" wrapping="true"/>
+                                </VBox>
+                                <VBox id="idVBox2" class="sapUiSmallMargin" width="80%">
+                                    <Label id="Amm1" text="{i18n>amministrazione}" design="Bold"/>
+                                    <Text id="amm1" text="{}"/>
+                                </VBox>
+                                <VBox id="idVBox3" class="sapUiSmallMargin" width="80%">
+                                    <Label id="Rag1" text="{i18n>Ragioneria}" design="Bold"/>
+                                    <Text id="rag1" text="{}"/>
+                                </VBox>
+                            </HBox>
+                        
+                            <HBox id="idHBox2">
+                                <VBox id="idBenH" class="sapUiSmallMargin" width="50%">
+                                    <Label id="BenH" text="{i18n>beneficiarioH}" design="Bold"/>
+                                    <Text id="Ben1H" text="{}"/>
+                                </VBox>
+                                <VBox id="idVBox4" class="sapUiSmallMargin" width="50%">
+                                    <Label id="TotImp1" text="{i18n>totimp}" design="Bold"/>
+                                    <Text id="totImp1" text="{}" wrapping="true"/>
+                                </VBox>
+                                <VBox id="idVBox5" class="sapUiSmallMargin" width="80%">
+                                    <Label id="RicAss1" text="{i18n>NricAss}" design="Bold"/>
+                                    <Text id="ricAss1" text="{}"/>
+                                </VBox>
+                            </HBox>
+                        </l:VerticalLayout>
+                    </l:HorizontalLayout>
+                </f:DynamicPageHeader>
+                </f:header>
             <f:content>
-                <Wizard id="CreateProductWizard" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" showNextButton="true" navigationChange="handleNavigationChange" renderMode="Page">
+                <Wizard id="CreateProductWizard" class="sapUiResponsivePadding--header sapUiResponsivePadding--content" showNextButton="false" navigationChange="handleNavigationChange" renderMode="Page">
                     <WizardStep id="SelezioneTitoliStep" title="Contratto" validated="true">
                         <Label text="Con contratto" />
-                        <Switch accessibleNameRef="regularSwitchLabel" customTextOff="No" customTextOn="Si" change="handleChange" />
+                        <Switch accessibleNameRef="regularSwitchLabel" customTextOff="No" customTextOn="Si" change="controlSwitch" id="switch"   />
                         <Panel height="100%">
                             <content>
                                 <l:Grid>
@@ -84,8 +125,6 @@
                                 </l:Grid>
 
                                 <Table class="sapUiSizeCompact" id="tabPreimpNI" includeItemInSelection="true" items="{>/items}" headerText="Riepilogo Pianificazione Finanziaria">
-                                  
-
                                     <columns>
                                         <Column width="12%">
                                             <Label text="Esercizio" />
@@ -113,24 +152,24 @@
                                 </Table>
                             </content>
                         </Panel>
-                       
+
                         <OverflowToolbar>
-                            <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
-                            <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
+                            <Button text="Indietro" type="Emphasized"  press="onBackButton" />
+                            <Button text="Avanti" type="Emphasized"  press="onNextButton" />
                             <ToolbarSpacer />
-                            <Button type="Emphasized" text="Salva in bozza" visible="{/PNIButtonVisible}" />
+                            <Button type="Emphasized" text="Salva in bozza"  />
                         </OverflowToolbar>
                     </WizardStep>
-                    <WizardStep id="Beneficiario1" validated="true" title="Beneficiario" activate="additionalInfoValidation"  >
-                   <Toolbar>
-                   <ToolbarSpacer/>
-				<Button type="Emphasized" text="Richiedi Anagrafica Beneficiario" />
-				<Button type="Emphasized" text="Inserisci Mod.Pag.-Iban" />
-                </Toolbar>
-                         <RadioButtonGroup id="GroupA" columns="3" width="100%">
-                                <RadioButton text="Persona Fisica" selected="true" />
-                                <RadioButton text="Persona Giuridica" />
-                            </RadioButtonGroup>
+                    <WizardStep id="Beneficiario1" validated="true" title="Beneficiario" activate="additionalInfoValidation">
+                        <Toolbar>
+                            <ToolbarSpacer />
+                            <Button type="Emphasized" text="Richiedi Anagrafica Beneficiario" press="onOpenFragmet"/>
+                            <Button type="Emphasized" text="Inserisci Mod.Pag.-Iban" />
+                        </Toolbar>
+                        <RadioButtonGroup id="GroupA" columns="3" width="100%">
+                            <RadioButton text="Persona Fisica" selected="true" />
+                            <RadioButton text="Persona Giuridica" />
+                        </RadioButtonGroup>
                         <form:SimpleForm
                             id="SimpleFormChange480_12120"
                             editable="true"
@@ -147,143 +186,222 @@
                             columnsXL="2"
                             columnsL="2"
                             columnsM="1"
-                            singleContainerFullSize="false">
-                            
+                            singleContainerFullSize="false"
+                        >
                             <VBox>
                                 <Label text="Beneficiario:" required="true" />
-                                     <MultiInput id="vh" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
-                                        <layoutData>
-                                             <l:GridData span="L6 M3 S3" />
-                                        </layoutData>
+                                <MultiInput id="vh" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
+                                <layoutData>
+                                    <l:GridData span="L6 M3 S3" />
+                                </layoutData>
                             </VBox>
-                             
-                             </form:SimpleForm>
-                             <VBox>
-                           <Panel>
-                           	
-			<VBox
-                class="columns"
-				height="100px"
-				alignItems="Center"
-				justifyContent="Start" direction="Column">
-				 <HBox>
-                 <Label text="Codice Fiscale:" />
-                 <Input id="cFiscale" />
-                 <Label text="Codice Fiscale Estero:" />
-                 <Input id="cFiscaleE" />
-                 </HBox>
-                 
-                 <HBox>
-                 <Label text="Nome:" required="true" />
-                 <Input id="nome" />  
-                 <Label text="Cognome:" required="true" />
-                 <Input id="cognome" /> 
-                 </HBox>
-               
-                 <HBox>  
-				 <Label text="Ragione Sociale:" required="true" />
-                 <Input id="rSociale" />
-                 <Label text="Partita IVA:" required="true" />
-                 <Input id="IVA" />
-                 </HBox>
-                 </VBox>
-                 <!-- <HBox alignItems="End" justifyContent="Start" direction="Column">
+                        </form:SimpleForm>
+                        
+                            
+                                <VBox class="columns" height="100px" alignItems="Center" justifyContent="Start" direction="Column">
+                                    <HBox>
+                                        <Label text="Codice Fiscale:" />
+                                        <Input id="cFiscale" />
+                                        <Label text="Codice Fiscale Estero:" />
+                                        <Input id="cFiscaleE" />
+                                    </HBox>
+
+                                    <HBox>
+                                        <Label text="Nome:" required="true" />
+                                        <Input id="nome" />
+                                        <Label text="Cognome:" required="true" />
+                                        <Input id="cognome" />
+                                    </HBox>
+
+                                    <HBox>
+                                        <Label text="Ragione Sociale:" required="true" />
+                                        <Input id="rSociale" />
+                                        <Label text="Partita IVA:" required="true" />
+                                        <Input id="IVA" />
+                                    </HBox>
+                                </VBox>
+                                <!-- <HBox alignItems="End" justifyContent="Start" direction="Column">
 
 
                       
 				 
                  	
 			</HBox> -->
-								
-
-							
-             
-
-		</Panel>
-        </VBox>
-                             <core:Fragment fragmentName="gestione1.fragment.modPagamento" type="XML" />
-                       
+                            
+                        
+                        <core:Fragment fragmentName="gestione1.fragment.modPagamento" type="XML" />
+                        <!-- <core:Fragment fragmentName="gestione1.fragment.anagrafica" type="XML" /> -->
                     </WizardStep>
 
                     <WizardStep id="ImputCont" validated="true" activate="optionalStepActivation" title="Imputazione Contabile">
-                   
-                        <form:SimpleForm editable="true">
-                        <HBox>
-                            <Label text="Sottoposto a richiesta di Assenso Preventivo"/>
+              <form:SimpleForm id="form"
+                   editable="true"
+                   width="100%">
+                
+                     
+                    <VBox>
+                     <HBox>
+                        <Label text="Sottoposto a richiesta di Assenso Preventivo" labelFor="Sottoposto a richiesta di Assenso Preventivo"/>
                             <Switch accessibleNameRef="regularSwitchLabel" customTextOff="No" customTextOn="Si" change="handleChange" />
-                            <Label text="ID Richiesta Assenso Preventivo:" />
-                            <MultiInput id="IdAssPre"  key="{respModel>matricola}" editable="false" text="{respModel>cognome} {respModel>nome} {respModel>matricola}"  />
+                        <layoutData>
+                            <l:GridData span="L3 M3 S3" />
+                        </layoutData>
+                   </HBox>
+                   <Title text=""/>
+                   <HBox>
+                         <Label text="Posizione Finanziaria:" labelFor="Posizione Finanziaria:" />
+                            <MultiInput   key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" required="true"/>
+                        <layoutData>
+                            <l:GridData span="L3 M3 S3" />
+                        </layoutData>
+                   </HBox>
+                   <Title text=""/>
+                   <HBox>
+                        <Label text="PNI" labelFor="PNI" />
+                        <Switch accessibleNameRef="regularSwitchLabel" customTextOff="No" customTextOn="Si" change="handleChange" />
+                        <layoutData>
+                            <l:GridData span="L3 M3 S3" />
+                        </layoutData>
                         </HBox>
-                        <VBox>
+                        <Title text=""/>
                         <HBox>
-                            <Label text="Posizione Finanziaria:"  />
-                            <MultiInput id="IdPosFin"   key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" required="true"/>
-                       
-                            <Label text="Oggetto della Spesa" />
-                            <MultiInput id="oggSpesa" showValueHelp="false" required="true" />
+                        <Label text="Oggetto della spesa:" labelFor="Oggetto della spesa:" />
+                        <Input value=""  />
+                        </HBox>
+                    </VBox>
+                    <VBox>
+                    <HBox>
+                        <Label text="ID Richiesta Assenso Preventivo:" labelFor="ID Richiesta Assenso Preventivo:" />
+                        <MultiInput id="IdAssPre"  key="{respModel>matricola}" editable="false" text="{respModel>cognome} {respModel>nome} {respModel>matricola}"/>
+                        <layoutData>
+                            <l:GridData span="L3 M3 S3" />
+                        </layoutData>
+                    </HBox>
+                    <Title text=""/>
+                    <HBox>
+                        <Label text="Struttura Amministrativa Responsabile:" labelFor="Struttura Amministrativa Responsabile:" wrapping="true" />
+                         <MultiInput   key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" required="true"/>
+                        <layoutData>
+                            <l:GridData span="L3 M3 S3" />
+                        </layoutData>
+                        </HBox>
+                    </VBox>
+                   
+          
+</form:SimpleForm>
+
+                        <OverflowToolbar>
+                            <Button text="Indietro" type="Emphasized"  press="onBackButton" />
+                            <Button text="Avanti" type="Emphasized"  press="onNextButton" />
+                            <ToolbarSpacer/>
+                            <Button type="Emphasized" text="Salva in bozza"  />
+                        </OverflowToolbar>
+                    </WizardStep>
+
+                    <WizardStep id="idAttoAuth" validated="true" activate="optionalStepActivation" title="Atto Autorizzativo">
+                        <form:SimpleForm editable="true">
+                        <VBox>
+                            <HBox>
+                            <Label text="Natura Atto:" labelFor="Natura Atto:"/>
+                            <MultiComboBox id="naturAtto" items="{contrattiModel>/}" selectionFinish="onSelectionFinish">
+                                        <core:Item key="{}" text="{} {}" />
+                                    </MultiComboBox>
+                                    <layoutData>
+                            <l:GridData span="L3 M3 S3" />
+                        </layoutData>
+                            </HBox>
+                            <Title text=""/>
+                            <HBox visible="{/FilterSwitch1}">
+                            <Label text="Tipo Contratto:" labelFor="Tipo Contratto:"/>
+                             <MultiComboBox id="idTypeCon" items="{contrattiModel>/}" selectionFinish="onSelectionFinish">
+                                        <core:Item  key="{}" text="{} {}" />
+                                    </MultiComboBox>
+                                    <layoutData>
+                            <l:GridData span="L3 M3 S3" />
+                        </layoutData>
+                            </HBox>
+                        </VBox> 
+                         <VBox>
+                            <HBox  >
+                             <Label text="Numero Contratto/Atto:" labelFor="Numero Contratto/Atto:" />
+                         <MultiComboBox id="numConAtt" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}">
+                           <core:Item  key="{}" text="{} {}" />
+                                    </MultiComboBox>
+                        <layoutData>
+                            <l:GridData span="L3 M3 S3" />
+                        </layoutData>
+                            </HBox >
+                             <Title text=""/>
+                            <HBox visible="{/FilterSwitch2}" >
+                             <Label text="Forma di aggiudicazione:" labelFor="Forma di aggiudizazione:" />
+                             <MultiComboBox id="formAgg"  items="{>/}" selectionFinish="onSelectionFinish">
+                             <core:Item  key="{}" text="{} {}" />
+                                    </MultiComboBox>
+                        <layoutData>
+                            <l:GridData span="L3 M3 S3" />
+                        </layoutData>
+                             </HBox >
+                        </VBox>
+                        <VBox>
+                            <HBox>
+                            <Label text="Data Atto:" labelFor="Data Atto:" />
+                            <DatePicker id="dataAtt" displayFormat="dd/MM/yyyy" />
+                            </HBox>
+                        </VBox>  
+                        </form:SimpleForm>
+                        <OverflowToolbar>
+                            <Button text="Indietro" type="Emphasized"  press="onBackButton" />
+                            <Button text="Avanti" type="Emphasized"  press="onNextButton" />
+                            <ToolbarSpacer/>
+                            <Button type="Emphasized" text="Salva in bozza"  />
+                        </OverflowToolbar>
+                    </WizardStep>
+
+                    <WizardStep id="idTipoSpesa" validated="true" activate="optionalStepActivation" title="Tipologia ordinazione della spesa">
+                        <form:SimpleForm editable="true">
+                        <VBox>
+                            <HBox>
+                            <CheckBox text="Mandato Informatico" selected="false" />
                             </HBox>
                             </VBox>
-                            <Label text="Tipo tesoreria" />
-                            <MultiInput id="TT" showValueHelp="false" />
-                        </form:SimpleForm>
-                         <OverflowToolbar>
-                            <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
-                            <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
-                        </OverflowToolbar>
-                        </WizardStep>
-
-                        <WizardStep id="idAttoAuth" validated="true" activate="optionalStepActivation" title="Atto Autorizzativo">
-                   
-                        <form:SimpleForm editable="true">
-                        <HBox>
-                           
-                        </HBox> 
-                        <HBox>
-                        </HBox>
-                            
-                        </form:SimpleForm>
-                        </WizardStep>
-
-                        <WizardStep id="idTipoSpesa" validated="true" activate="optionalStepActivation" title="Tipologia ordinazione della spesa">
-                   
-                        <form:SimpleForm editable="true">
-                        <HBox>
-                           
-                        </HBox> 
-                        <HBox>
-                        </HBox>
-                            
+                            <VBox>
+                            <HBox >
+                            <CheckBox text="Ordine di accreditamento" selected="false" editable="false"/>
+                            </HBox >
+                            </VBox>
+                            <VBox>
+                            <HBox>
+                            <CheckBox text="Note di Imputazione" selected="false" />
+                            </HBox>
+                            </VBox>
                         </form:SimpleForm>
                         <OverflowToolbar>
-                            <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
-                            <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
+                            <Button text="Indietro" type="Emphasized"  press="onBackButton" />
+                            <Button text="Avanti" type="Emphasized"  press="onNextButton" />
+                            <ToolbarSpacer/>
+                            <Button type="Emphasized" text="Salva in bozza"  />
                         </OverflowToolbar>
-                        </WizardStep>
-                    
+                    </WizardStep>
                     <WizardStep id="EsigiId" validated="true" activate="optionalStepActivation" title="Esigibilità">
-                   
                         <form:SimpleForm editable="true">
-                        <HBox>
-                           
-                        </HBox> 
-                        <HBox>
-                        </HBox>
-                            
+                            <HBox>
+                            </HBox>
                         </form:SimpleForm>
                         <OverflowToolbar>
-                            <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
-                            <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
+                            <Button text="Indietro" type="Emphasized"  press="onBackButton" />
+                            <ToolbarSpacer/>
+                            <Button text="Salva IPE" type="Emphasized"  press="" enabled="false"/>
                         </OverflowToolbar>
-                        </WizardStep>
+                    </WizardStep>
                 </Wizard>
             </f:content>
 
             <f:footer>
                 <!-- <OverflowToolbar>
-                    <Button text="Indietro" type="Emphasized" visible="{/BackButtonVisible}" press="onBackButton" />
-                    <Button text="Avanti" type="Emphasized" visible="{/NextButtonVisible}" press="onNextButton" />
+                    <Button text="Indietro" type="Emphasized"  press="onBackButton" />
+                    <Button text="Avanti" type="Emphasized"  press="onNextButton" />
                     <ToolbarSpacer />
-                    <Button type="Emphasized" text="Preimposta NI" visible="{/PNIButtonVisible}" press="onAcceptDati" id="PreimpostaNI" />
+                    <Button type="Emphasized" text="Preimposta NI"  press="onAcceptDati" id="PreimpostaNI" />
                 </OverflowToolbar> -->
             </f:footer>
         </f:DynamicPage>

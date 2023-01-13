@@ -22,27 +22,83 @@
                         <ObjectAttribute text="Esercizio Decreto 2023" />
                     </layout:VerticalLayout>
                 </layout:HorizontalLayout>
+                  
             </f:DynamicPageHeader>
+            
         </f:header> 
+        <!-- <f:content>
+          	<VBox class="sapUiSmallMargin">
+		<form:SimpleForm id="SimpleFormToolbar"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			labelSpanXL="4"
+			labelSpanL="3"
+			labelSpanM="4"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="0"
+			emptySpanL="4"
+			emptySpanM="0"
+			emptySpanS="0"
+			columnsXL="2"
+			columnsL="1"
+			columnsM="1"
+			singleContainerFullSize="false"
+			ariaLabelledBy="Title1" >
+            <VBox>
+			
+					<Title id="Title1" text="Address"/>
+					
     
-        
-        
-            <!-- <IconTabBar id="idIconTabBar" class="sapUiResponsiveContentPadding" >
+			
+</VBox>
+
+<VBox alignItems="End">
+<IconTabBar id="idIconTabBar" class="sapUiResponsiveContentPadding" >
     <items>
-    
-                    <IconTabFilter icon="sap-icon://detail-view" text="Lista Dettagli" >
+                    
+                    <IconTabFilter icon="sap-icon://detail-view" text="Lista IPE" >
                     </IconTabFilter>
                     </items>
-    </IconTabBar> -->
-       
+    </IconTabBar>
+</VBox>
+
+
+
+
+
+            </form:SimpleForm>
+            </VBox>
+
+       </f:content> -->
+       <f:content>
+       <Toolbar height="100%" width="100%" title="bibhibibi">
+       <ToolbarSpacer />
+                            <Button align="Center" type="Emphasized" text="Registra IPE Apertura"  width="33%" press="navToWizard"/>
+                            <ToolbarSpacer />
+                            <Button align="Center" type="Emphasized" text="Registra IPE di Variazione" width="33%" />
+                            <ToolbarSpacer />
+                            <Button align="Center" type="Emphasized" text="Registra Atto di Annullamento" width="33%" />
+                       
+                        </Toolbar>
+                        </f:content>
+       <!-- </f:content>
           <f:content>
-                        <Toolbar>
+	
+ <IconTabBar id="idIconTabBar" class="sapUiResponsiveContentPadding" >
+    <items>
+                    
+                    <IconTabFilter icon="sap-icon://detail-view" text="Lista IPE" >
+                    </IconTabFilter>
+                    </items>
+    </IconTabBar>  -->
+                        <!-- <Toolbar>
                             <Button align="Center" type="Emphasized" text="Registra IPE Apertura" width="33%" press="navToWizard"/>
                             <ToolbarSpacer />
                             <Button align="Center" type="Emphasized" text="Registra IPE di Variazione" width="33%" />
                             <ToolbarSpacer />
                             <Button align="Center" type="Emphasized" text="Registra Atto di Annullamento" width="33%" />
-                        </Toolbar> 
+                        </Toolbar>  -->
                         
             <!-- <Toolbar >
         <Button align="Center" type="Emphasized"  text="Registra IPE Apertura" width="33%" />
@@ -51,7 +107,7 @@
         <ToolbarSpacer/>
         <Button align="Center" type="Emphasized"  text="Registra Atto di Annullamento" width="33%" />
         </Toolbar> -->
-</f:content>
+
         
         <f:footer>
             <OverflowToolbar>
