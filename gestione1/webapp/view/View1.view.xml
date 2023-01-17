@@ -22,7 +22,7 @@
             </f:title>
             <f:header>
                 <f:DynamicPageHeader pinnable="true">
-                    <fb:FilterBar showClearOnFB="false" showFilterConfiguration="false" useToolbar="false"  id="filterID">
+                    <fb:FilterBar showClearOnFB="false" showFilterConfiguration="false" useToolbar="false"  id="filterID" search="onSearch">
                         <fb:filterGroupItems>
 							<fb:FilterGroupItem groupName="__$INTERNAL$" name="Esercizio" label="{i18n>es_decreto}" tooltip="suggestion" visibleInFilterBar="true" mandatory="true">
                                 <fb:control>

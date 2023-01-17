@@ -17,7 +17,7 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/sap/opu/odata/",
+        "uri": "/sap/opu/odata/sap/ZODATACOSP_DECRETO_IMPEGNO_SRV",
         "type": "OData",
         "settings": {
           "annotations": [],

@@ -9,7 +9,7 @@
     xmlns:core="sap.ui.core"
     xmlns:menu="sap.m.MenuItem"
     xmlns:menBtn="sap.m.Menu" height="100%">
-    <Table class="sapUiSizeCompact" id="tab" includeItemInSelection="true"  mode="SingleSelect">
+    <Table class="sapUiSizeCompact" id="DecretoGI" items="{DecretoGI>/}" includeItemInSelection="true"  mode="SingleSelect">
         <headerToolbar>
             <OverflowToolbar>
                 <content>
@@ -49,15 +49,15 @@
             </Column>
         </columns>
         <ColumnListItem>
-            <!-- <Text text="{tabPreimpNI>Esercizio Decreto}" />
-            <Text text="{tabPreimpNI>Amminastrazione}" />
-            <Text text="{tabPreimpNI>Uff. I Livello}" />
-            <Text text="{tabPreimpNI>Uff. II Livello}" />
-            <Text text="{tabPreimpNI>N. Decreto}" />
-            <Text text="{tabPreimpNI>Data Decreto" />
-            <Text text="{tabPreimpNI>Ragioneria}" />
-            <Text text="{tabPreimpNI>Tipologia impegno" />
-            <Text text="{tabPreimpNI>Stato Decreto}" /> -->
+            <Text text="{DecretoGI>Esercizio Decreto}" />
+            <Text text="{DecretoGI>Amminastrazione}" />
+            <Text text="{DecretoGI>Uff. I Livello}" />
+            <Text text="{DecretoGI>Uff. II Livello}" />
+            <Text text="{DecretoGI>N. Decreto}" />
+            <Text text="{DecretoGI>Data Decreto" />
+            <Text text="{DecretoGI>Ragioneria}" />
+            <Text text="{DecretoGI>Tipologia impegno" />
+            <Text text="{DecretoGI>Stato Decreto}" />
 
         </ColumnListItem>
     </Table>
