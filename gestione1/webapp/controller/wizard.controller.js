@@ -1,14 +1,19 @@
 sap.ui.define(
   [
-    "sap/ui/core/syncStyleClass",
     "sap/ui/core/mvc/Controller",
     "sap/ui/core/library",
     'sap/ui/model/json/JSONModel',
+    "sap/m/MessageBox",
+    "sap/ui/core/syncStyleClass",
+    "sap/ui/core/Fragment",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator",
     "./BaseController"
 
   ],
-  function (syncStyleClass,BaseController,CoreLibrary,JSONModel) {
+  function (BaseController,CoreLibrary,JSONModel,MessageBox,syncStyleClass,Fragment,Filter,FilterOperator) {
     "use strict";
+    var iTimeoutId;
     var ValueState = CoreLibrary.ValueState,
             oData = {
                 FilterSwitch1: true,
@@ -26,7 +31,7 @@ sap.ui.define(
                  this.getView().setModel(oProprietà);
                  this._iSelectedStepIndex = 0;
          this.controlSwitch();
-         this.controlHeader();
+         //this.controlHeader();
         var oModel = new sap.ui.model.json.JSONModel("../mock/comboBox.json");
         this.getView().setModel(oModel, "comboBox");
         
@@ -122,6 +127,21 @@ sap.ui.define(
 				oFragment.open();
 			}.bind(this));
 		},
+    onOpenDialog : function () {
+
+			if (!this.pFragment) {
+				this.pFragment = this.loadFragment({
+					name: "gestione1.fragment.listaPNI",
+          controller: this
+				}).then(function (oFragment) {
+          this.getView().addDependent(oFragment);
+          return oFragment;
+        }.bind(this));
+			} 
+			this.pFragment.then(function(oFragment) {
+				oFragment.open();
+			}.bind(this));
+		},
 
     onWarning2MessageBoxPress: function () {
       sap.m.MessageBox.warning("Servizio certificazione beneficiario avviato,in attesa di risposta, si prega di attendere", {
@@ -134,26 +154,65 @@ sap.ui.define(
         textDirection: sap.ui.core.TextDirection.Inherit     // default
     });
   },
-    // onOpenFragmentBusyDialog: function () {
-    //   load BusyDialog fragment asynchronously
-    //   if (!this._pBusyDialog) {
-    //     this._pBusyDialog = this.loadFragment({
-    //       name: "gestione1.fragment.BusyDialog",
-    //       controller: this
-    //     }).then(function (oBusyDialog) {
-    //       this.getView().addDependent(oBusyDialog);
-    //       syncStyleClass("sapUiSizeCompact", this.getView(), oBusyDialog);
-    //       return oBusyDialog;
-    //     }.bind(this));
-    //   }
+
+  onSuccessMessageBoxPress: function () {
+    MessageBox.success("Beneficiario certificato e creato correttamente");
+  },
+  onError2MessageBoxPress: function () {
+    MessageBox.error("Impossibile certificare il beneficiario, procedere con la creazione con i dati inseriti manualmente?", {
+      actions: ["OK", MessageBox.Action.CLOSE],
+      emphasizedAction: "Annulla",
+      onClose: function (sAction) {
+        MessageBox.error("Operazione interrotta, nessun beneficiario creato " + sAction);
+      }
+    });
+  },
+
+   
+
+    onOpenFragmentBusyDialog: function () {
+     
+      if (!this._pBusyDialog) {
+        this._pBusyDialog = this.loadFragment({
+          name: "gestione1.fragment.BusyDialog",
+          controller: this
+        }).then(function (oBusyDialog) {
+          this.getView().addDependent(oBusyDialog);
+          syncStyleClass("sapUiSizeCompact", this.getView(), oBusyDialog);
+          return oBusyDialog;
+        }.bind(this));
+      }
   
-    //   this._pBusyDialog.then(function(oBusyDialog) {
-    //     oBusyDialog.open();
-    //   }.bind(this));
-    // },
+      this._pBusyDialog.then(function(oBusyDialog) {
+        oBusyDialog.open();
+        this.simulateServerRequest();
+      }.bind(this));
+    },
+    simulateServerRequest: function () {
+			// simulate a longer running operation
+			iTimeoutId = setTimeout(function() {
+				this._pBusyDialog.then(function(oBusyDialog) {
+					oBusyDialog.close();
+				});
+			}.bind(this), 3000);
+		},
+
+		onDialogClosed: function (oEvent) {
+			clearTimeout(iTimeoutId);
+
+			if (oEvent.getParameter("cancelPressed")) {
+				MessageBox.error("The operation has been cancelled");
+			} else {
+				MessageBox.success("The operation has been completed");
+			}
+		},
+
      onCloseDialog : function () {
 		 	this.byId("Anagrafica").close();
 		},
+    onCloseDialog : function () {
+      this.byId("listaPNI").close();
+   },
 
   controlSwitch: function () {
                 var oProprietà = this.getView().getModel();
@@ -168,22 +227,53 @@ sap.ui.define(
              }
             },
 
-            controlHeader: function () {
-              var oProprietà = this.getView().getModel();
-              this._oWizard = this.byId("CreateProductWizard");
-        this._oSelectedStep = this._oWizard.getSteps()[this._iSelectedStepIndex];
-        this._iSelectedStepIndex = this._oWizard.getSteps().indexOf(this._oSelectedStep);
+      //       controlHeader: function () {
+      //         var oProprietà = this.getView().getModel();
+      //         this._oWizard = this.byId("CreateProductWizard");
+      //   this._oSelectedStep = this._oWizard.getSteps()[this._iSelectedStepIndex];
+      //   this._iSelectedStepIndex = this._oWizard.getSteps().indexOf(this._oSelectedStep);
 
-        if (this._iSelectedStepIndex == 5  ) {
-          oProprietà.setProperty("/header1Visible", true)
+      //   if (this._iSelectedStepIndex == 5  ) {
+      //     oProprietà.setProperty("/header1Visible", true)
             
-        } 
-        else {
-          oProprietà.setProperty("/header1Visible", false)
-        }           
+      //   } 
+      //   else {
+      //     oProprietà.setProperty("/header1Visible", false)
+      //   }           
+      // },
+
+      onValueHelpRequest: function (oEvent) {
+        var sInputValue = oEvent.getSource().getValue(),
+          oView = this.getView();
+  
+        if (!this._pValueHelpDialog) {
+          this._pValueHelpDialog = Fragment.load({
+            id: oView.getId(),
+            name: "gestione1.fragment.posFinanziaria",
+            controller: this
+          }).then(function (oDialog) {
+            oView.addDependent(oDialog);
+            syncStyleClass("sapUiSizeCompact", this.getView(), oDialog);
+          return oDialog;
+        }.bind(this));
       }
-              
-            
+         
+        // this._pValueHelpDialog.then(function(oDialog) {
+        //   // Create a filter for the binding
+        //   oDialog.getBinding("items").filter([new Filter("Name", FilterOperator.Contains, sInputValue)]);
+        //   // Open ValueHelpDialog filtered by the input's value
+        //   oDialog.open(sInputValue);
+        // });
+      },
+      onChangeSelect: function () {
+        var bSelected= this.getView().byId("CB1").getSelected();
+        if (bSelected) {
+          this.getView().byId("CB3").setEnabled(false);
+        }  
+        else {
+          this.getView().byId("CB3").setEnabled(true);
+        }
+      }   
     });
   }
 );

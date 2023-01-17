@@ -163,7 +163,7 @@
                     <WizardStep id="Beneficiario1" validated="true" title="Beneficiario" activate="additionalInfoValidation">
                         <Toolbar>
                             <ToolbarSpacer />
-                            <Button type="Emphasized" text="Richiedi Anagrafica Beneficiario" press="onOpenFragmet"/>
+                            <Button type="Emphasized" text="Richiedi Anagrafica Beneficiario" press="onOpenFragment"/>
                             <Button type="Emphasized" text="Inserisci Mod.Pag.-Iban" />
                         </Toolbar>
                         <RadioButtonGroup id="GroupA" columns="3" width="100%">
@@ -249,8 +249,8 @@
                    </HBox>
                    <Title text=""/>
                    <HBox>
-                         <Label text="Posizione Finanziaria:" labelFor="Posizione Finanziaria:" />
-                            <MultiInput   key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" required="true"/>
+                         <Label text="Posizione Finanziaria:" labelFor="Posizione Finanziaria:" required="true"/>
+                            <Input   id="pFin" text="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"   />
                         <layoutData>
                             <l:GridData span="L3 M3 S3" />
                         </layoutData>
@@ -361,17 +361,17 @@
                         <form:SimpleForm editable="true">
                         <VBox>
                             <HBox>
-                            <CheckBox text="Mandato Informatico" selected="false" />
+                            <CheckBox id="CB1" text="Mandato Informatico" selected="false" select="onChangeSelect" />
                             </HBox>
                             </VBox>
                             <VBox>
                             <HBox >
-                            <CheckBox text="Ordine di accreditamento" selected="false" editable="false"/>
+                            <CheckBox id="CB2" text="Ordine di accreditamento" selected="false" enabled="false"/>
                             </HBox >
                             </VBox>
                             <VBox>
                             <HBox>
-                            <CheckBox text="Note di Imputazione" selected="false" />
+                            <CheckBox id="CB3" text="Note di Imputazione" selected="false"/>
                             </HBox>
                             </VBox>
                         </form:SimpleForm>
@@ -383,10 +383,197 @@
                         </OverflowToolbar>
                     </WizardStep>
                     <WizardStep id="EsigiId" validated="true" activate="optionalStepActivation" title="Esigibilità">
-                        <form:SimpleForm editable="true">
-                            <HBox>
-                            </HBox>
-                        </form:SimpleForm>
+                    <Toolbar>
+                    <ToolbarSpacer/>
+                    <Title text="IPE-impegno pluriennale ad esigibilità" textAlign="Center"/>
+                    <ToolbarSpacer/>
+                    </Toolbar>
+                    	<IconTabBar
+		id="idIconTabBar1"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter text="Competenza" key="info">
+            
+             <Table class="sapUiSizeCompact" id="HeaderITB1" includeItemInSelection="true"  visible="{/TableVisible}" >
+        <headerToolbar>
+            <OverflowToolbar height="100%">
+                <content>
+                
+                    <ToolbarSpacer />
+				<Label text="Seleziona periodi:" vAlign="Inherit"/>
+               <ComboBox value=""/>
+               <Button type="Emphasized" icon="sap-icon://add" text="Aggiungi PNI/Autorizzazione" press="onOpenDialog"/>
+               <Button type="Emphasized" icon="sap-icon://delete" text="Elimina"/>
+               <Button type="Emphasized" icon="sap-icon://excel-attachment" text="Esporta"/>
+               <Button type="Emphasized" icon="sap-icon://edit" text="Imposta previsioni"/>
+                
+              
+              
+               </content>
+              
+            </OverflowToolbar>
+   
+                    <!-- <Label text="Struttura Finanziaria:" vAlign="Inherit"/>
+               <Label text="Struttura Amministrativa Responsabile:" vAlign="Inherit"/> -->
+        </headerToolbar>
+       
+			<!-- <OverflowToolbar>
+                <Label text="Struttura Finanziaria:" vAlign="Inherit"/>
+               <Input text="{}" editable="fale"/>
+               <Label text="Struttura Amministrativa Responsabile:" vAlign="Inherit"/>
+                <Input text="{}" editable="fale"/>
+                </OverflowToolbar> -->
+           
+         
+               <columns>
+            <Column width="60px">
+                <Label text="Clausola" />
+            </Column>
+            <Column width="60px">
+                <Label text="Disponibilità PNI" />
+            </Column>
+            <Column width="60px">
+                <Label text="2023" />
+            </Column>
+            <Column width="60px">
+                <Label text="Disponibilità di cassa" />
+            </Column>
+            <Column width="60px">
+                <Label text="Clausola" />
+            </Column>
+            <Column width="60px">
+                <Label text="Disponibilità PNI" />
+            </Column>
+            <Column width="60px">
+                <Label text="2024" />
+            </Column>
+            <Column width="60px">
+                <Label text="Disponibilità di cassa" />
+            </Column>
+            <Column width="60px">
+                <Label text="Clausola" />
+            </Column>
+            <Column width="60px">
+                <Label text="Clausola" />
+            </Column>
+            <Column width="60px">
+                <Label text="Disponibilità PNI" />
+            </Column>
+            <Column width="60px">
+                <Label text="2023" />
+            </Column>
+            <Column width="60px">
+                <Label text="Disponibilità di cassa" />
+            </Column>
+            <Column width="60px">
+                <Label text="Clausola" />
+            </Column>
+            <Column width="60px">
+                <Label text="Disponibilità PNI" />
+            </Column>
+            <Column width="60px">
+                <Label text="2024" />
+            </Column>
+            <Column width="60px">
+                <Label text="Disponibilità di cassa" />
+            </Column>
+            <Column width="60px">
+                <Label text="Clausola" />
+            </Column>
+        </columns>
+        <ColumnListItem>
+            <Text text="{HeaderITB>ZcodIsin}" />
+            <Text text="{HeaderITB>Ztipo}" />
+            <Text text="{HeaderITB>Zsottotipo}" />
+            <Text text="{HeaderITB>Ztassoint}" />
+            <Text text="{HeaderITB>ZdataInizio}" />
+            <Text text="{HeaderITB>Zfbdt}" />
+            <Text text="{HeaderITB>ZdataPag}" />
+            <Text text="{HeaderITB>ZcompRes}" wrapping="false"/>
+            <Text text="{HeaderITB>ZimpoTitolo}" />
+        </ColumnListItem>
+      
+    </Table>
+     
+			</IconTabFilter>
+			<IconTabFilter text="Residui" key="results">
+				<Table scrollX="true" class="sapUiSizeCompact" id="HeaderITB2" includeItemInSelection="true"  visible="{/TableVisible}">
+        <headerToolbar>
+            <OverflowToolbar>
+                <content>
+                
+                    <ToolbarSpacer />
+				<Label text="Seleziona periodi:" vAlign="Inherit"/>
+               <ComboBox value=""/>
+               <Button type="Emphasized" icon="sap-icon://add" text="Aggiungi PNI/Autorizzazione"/>
+               <Button type="Emphasized" icon="sap-icon://delete" text="Elimina"/>
+               <Button type="Emphasized" icon="sap-icon://excel-attachment" text="Esporta"/>
+               <Button type="Emphasized" icon="sap-icon://edit" text="Imposta previsioni"/>
+               </content>
+            </OverflowToolbar>
+<!-- <Toolbar>
+               <VBox>
+               <HBox>
+               <Label text="Struttura Finanziaria:" vAlign="Inherit"/>
+               <Input value="" editable="fale"/>
+               <Label text="Struttura Amministrativa Responsabile:" vAlign="Inherit"/>
+                <Input value="" editable="fale"/>
+               </HBox>
+               </VBox>
+               </Toolbar> -->
+                    <!-- <Label text="Struttura Finanziaria:" vAlign="Inherit"/>
+               <Label text="Struttura Amministrativa Responsabile:" vAlign="Inherit"/> -->
+               
+        </headerToolbar>
+               
+               
+               <columns>
+            <Column width="10%">
+                <Label text="Codice ISIN" />
+            </Column>
+            <Column width="10%">
+                <Label text="Tipologia" />
+            </Column>
+            <Column width="10%">
+                <Label text="Sottotipologia" />
+            </Column>
+            <Column width="13%">
+                <Label text="Tasso di Interesse" />
+            </Column>
+            <Column width="10%">
+                <Label text="Data inizio" />
+            </Column>
+            <Column width="13%">
+                <Label text="Data Scadenza" />
+            </Column>
+            <Column width="13%">
+                <Label text="Data Pagamento" />
+            </Column>
+            <Column width="4%">
+                <Label text="C/R" />
+            </Column>
+            <Column width="10%">
+                <Label text="Importo Titolo" />
+            </Column>
+        </columns>
+        <ColumnListItem>
+            <Text text="{HeaderITB>ZcodIsin}" />
+            <Text text="{HeaderITB>Ztipo}" />
+            <Text text="{HeaderITB>Zsottotipo}" />
+            <Text text="{HeaderITB>Ztassoint}" />
+            <Text text="{HeaderITB>ZdataInizio}" />
+            <Text text="{HeaderITB>Zfbdt}" />
+            <Text text="{HeaderITB>ZdataPag}" />
+            <Text text="{HeaderITB>ZcompRes}" wrapping="false"/>
+            <Text text="{HeaderITB>ZimpoTitolo}" />
+        </ColumnListItem>
+    </Table>
+			</IconTabFilter>
+			
+		</items>
+	</IconTabBar>
+                    
+                    
                         <OverflowToolbar>
                             <Button text="Indietro" type="Emphasized"  press="onBackButton" />
                             <ToolbarSpacer/>

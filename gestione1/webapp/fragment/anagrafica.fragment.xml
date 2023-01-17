@@ -131,10 +131,10 @@
          </f:formContainers>
       </f:Form>
       <beginButton>
-       <Button text="Indietro" press="onCloseDialog"/>
+       <Button text="Indietro" type="Emphasized" press="onCloseDialog"/>
       </beginButton>
       <endButton>
-        <Button text="Salva" type="Emphasized" press="onWarning2MessageBoxPress"/>
+        <Button text="Salva" type="Emphasized" press="onOpenFragmentBusyDialog"/>
       </endButton>
    </Dialog>
     
