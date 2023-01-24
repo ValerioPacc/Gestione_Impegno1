@@ -13,40 +13,97 @@
     height="100%"
     controllerName="gestione1.controller.dettagliDE"
 >
-    <f:DynamicPage id="dynamicPageId" showFooter="true">
+   <f:DynamicPage id="dynamicPageId" showFooter="true">
         <f:header>
-            <f:DynamicPageHeader pinnable="false">
-                <layout:HorizontalLayout allowWrapping="true">
-                    <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                        <ObjectAttribute title="Location" text="Warehouse A" />
-                        <ObjectAttribute title="Halway" text="23L" />
-                        <ObjectAttribute title="Rack" text="34" />
-                    </layout:VerticalLayout>
+            <f:DynamicPageHeader pinnable="false" backgroundDesign="Trasparent">
+                 <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                        <Title text="Dati Amminastrazione" />
+                        <layout:HorizontalLayout wrapping="true">
+                        <Label text="Dirigente/Direttore Firmatario:" class="sapUiSmallMarginEnd" />
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Label text="Data Firma:" class="sapUiSmallMarginEnd" />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                     <Label text="Ufficio Amministrazione:" class="sapUiSmallMarginEnd"/>
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+               </layout:HorizontalLayout >
+                </layout:VerticalLayout>
 
-                    <layout:VerticalLayout>
-                        <ObjectAttribute title="Availability" />
-                        <ObjectStatus text="In Stock" state="Success" />
-                    </layout:VerticalLayout>
-                </layout:HorizontalLayout>
-
-                <OverflowToolbar>
-                    <ToolbarSpacer />
-                    <Button text="Associa Impegno" type="Emphasized" press="pressAssociaImpegno" />
-                    <Button text="Rettifica NI" type="Emphasized" press="pressRettificaNI" />
-                </OverflowToolbar>
+                <layout:VerticalLayout class="sapUiLargeMarginTop">
+                        <Title text="Dati Decreto" />
+                        <layout:HorizontalLayout wrapping="true">
+                        <Label text="Esercizio Decreto:" class="sapUiSmallMarginEnd" />
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Label text="Amminstrazione:" class="sapUiSmallMarginEnd" />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                     <Label text="N.Decreto:" class="sapUiSmallMarginEnd"/>
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Label text="N.IPE:" class="sapUiSmallMarginEnd" />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                     <Label text="Data Decreto:" class="sapUiSmallMarginEnd" />
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Label text="N.Protocollo Amm.:" class="sapUiSmallMarginEnd"  />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>
+               </layout:HorizontalLayout >
+               <layout:HorizontalLayout wrapping="true"  class="sapUiMediumMarginTop">
+                <Label text="N.Protocollo Amm.:" class="sapUiSmallMarginEnd"  />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                        <Label text="Stato Decreto:" class="sapUiSmallMarginEnd" />
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Label text="Tipologia Impegno:" class="sapUiSmallMarginEnd" />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                     <Label text="Contratto:" class="sapUiSmallMarginEnd"/>
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Label text="Controllo preventivo Corte dei conti:" class="sapUiSmallMarginEnd" />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>
+               </layout:HorizontalLayout >
+                <layout:HorizontalLayout wrapping="true"  class="sapUiMediumMarginTop">
+                <Label text="Attesa documentazione aggiuntiva:" class="sapUiSmallMarginEnd"  />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>  
+               </layout:HorizontalLayout >
+                </layout:VerticalLayout>
+                
+                <layout:VerticalLayout class="sapUiLargeMarginTop">
+                        <Title text="Dati Ragioneria" />
+                        <layout:HorizontalLayout wrapping="true">
+                        <Label text="Ragioneria:" class="sapUiSmallMarginEnd" />
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Label text="Data Protocollo RGS:" class="sapUiSmallMarginEnd" />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                     <Label text="N.Protocollo RGS:" class="sapUiSmallMarginEnd"/>
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+               </layout:HorizontalLayout >
+                </layout:VerticalLayout>
             </f:DynamicPageHeader>
         </f:header>
         <f:content>
-            <IconTabBar>
+            <IconTabBar  class="sapUiResponsiveContentPadding" select="onSelect">
                 <items>
+                    <IconTabFilter icon="sap-icon://list" text="Lista IPE" key="ListaIPE">  
+                    </IconTabFilter>
+                    <IconTabSeparator/>
+                    <IconTabFilter icon="sap-icon://history" text="Workflow" key="Workflow">
+                    </IconTabFilter>
+                    <IconTabSeparator/>
+                    <IconTabFilter icon="sap-icon://documents" text="Fascicolo Elettronico" key="Fascicolo">
+                    </IconTabFilter>
+                    <!-- <ComboBox>
+                      <items>
+							<core:Item text="2023-2024-2025-2026" />
+</items>
+ </ComboBox> -->
                 </items>
             </IconTabBar>
             
         </f:content>
         <f:footer>
             <OverflowToolbar>
-               
+                <Button text="Indietro" type="Emphasized" press="onBackButton" />
+                <ToolbarSpacer />
+                <Button type="Emphasized" text="Registra IPE"   />
+                <Button type="Emphasized" text="Rettifica Decreto"   />
+                <Button type="Emphasized" text="Cancella Decreto"   />
             </OverflowToolbar>
         </f:footer>
     </f:DynamicPage>
 </mvc:View>
+   

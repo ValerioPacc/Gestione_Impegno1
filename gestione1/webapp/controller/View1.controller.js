@@ -30,9 +30,7 @@ sap.ui.define([
             navToDecreto: function (oEvent) {
                 this.getOwnerComponent().getRouter().navTo("Decreto");
             },
-            navToDettagliDE: function (oEvent) {
-                this.getOwnerComponent().getRouter().navTo("dettagliDE");
-            },
+           
             onSearch: function (oEvent) {
                     var oMdl = new sap.ui.model.json.JSONModel();
                 var that = this;
@@ -65,10 +63,48 @@ sap.ui.define([
             navToWizard: function (oEvent) {
                 this.getOwnerComponent().getRouter().navTo("wizard");
             },
+            navToDettagliDE: function (oEvent) {
+                this.getOwnerComponent().getRouter().navTo("dettagliDE");
+            },
 
             onRowSelectionChange: function (oEvent) {
                 this.getView().byId("PreimpostazioneNI").setEnabled(false);
             },
+
+            // onExport: function () {
+            //     //console.log("onExport")
+            //     var aCols, oRowBinding, oSettings, oSheet, oTable;
+
+            //     if (!this._oTable) {
+            //         this._oTable = this.byId('DecretoGI');
+            //     }
+
+            //     oTable = this._oTable;
+
+
+            //     // var oSelectedItemPath = oEvent.getSource().getParent().getBindingContextPath();
+            //     // var oSelectedItem = this.getOwnerComponent().getModel("booksMdl").getObject(oSelectedItemPath);
+
+            //     //console.log("table1: " + oTable)
+            //     oRowBinding = oTable.getBinding('items');
+            //     //console.log("row binding: " + oRowBinding);
+            //     aCols = this.createColumnConfig();
+
+            //     oSettings = {
+            //         workbook: {
+            //             columns: aCols,
+            //             hierarchyLevel: 'Level'
+            //         },
+            //         dataSource: oRowBinding,
+            //         fileName: 'Esportazione GI',
+            //         worker: false // We need to disable worker because we are using a MockServer as OData Service
+            //     };
+
+            //     oSheet = new sap.ui.export.Spreadsheet(oSettings);
+            //     oSheet.build().finally(function () {
+            //         oSheet.destroy();
+            //     });
+            // },
         });
     });
 

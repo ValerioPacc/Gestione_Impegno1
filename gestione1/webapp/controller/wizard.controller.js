@@ -26,7 +26,7 @@ sap.ui.define(
 
       onInit() {
          var oProprietà = new JSONModel(),
-                    oInitialModelState = Object.assign({}, oData);
+                oInitialModelState = Object.assign({}, oData);
                 oProprietà.setData(oInitialModelState);
                  this.getView().setModel(oProprietà);
                  this._iSelectedStepIndex = 0;
@@ -34,7 +34,12 @@ sap.ui.define(
          //this.controlHeader();
         var oModel = new sap.ui.model.json.JSONModel("../mock/comboBox.json");
         this.getView().setModel(oModel, "comboBox");
-        
+        var UIStateModel= new JSONModel();
+        var UIStateData= {
+          visible: false
+        };
+        UIStateModel.setData(UIStateData);
+        this.getView().setModel(UIStateModel, "UIState");
       },
 
       onListSelect: function (event) {
@@ -71,7 +76,7 @@ sap.ui.define(
             //console.log(this.getOwnerComponent().getRouter().navTo("View1"))
             this._iSelectedStepIndex = 0
             this.getOwnerComponent().getRouter().navTo("View1");
-            this.getView().byId("HeaderNIW").setVisible(false);
+            this.getView().byId("").setVisible(false);
             return;
         }
         var oNextStep = this._oWizard.getSteps()[this._iSelectedStepIndex - 1];
@@ -82,7 +87,7 @@ sap.ui.define(
         }
         this._iSelectedStepIndex--
         this._oSelectedStep = oNextStep;
-        this.controlHeader();
+        //this.controlHeader();
         //this.controlPreNI();
         //this.controlHeader()
     },
@@ -105,10 +110,10 @@ sap.ui.define(
 
         this._iSelectedStepIndex++;
         this._oSelectedStep = oNextStep;
-        this.controlHeader();
+        //this.controlHeader();
         // console.log(this._iSelectedStepIndex)
         //this.controlPreNI()
-        //this.controlHeader()
+        
         //this.getView().byId("tabGestNI").setVisible(false);
     },
 
@@ -127,10 +132,26 @@ sap.ui.define(
 				oFragment.open();
 			}.bind(this));
 		},
-    onOpenDialog : function () {
 
-			if (!this.pFragment) {
-				this.pFragment = this.loadFragment({
+    onOpenGridTable : function () {
+
+			if (!this.eFragment) {
+				this.eFragment = this.loadFragment({
+					name: "gestione1.fragment.impPre",
+          controller: this
+				}).then(function (oFragment) {
+          this.getView().addDependent(oFragment);
+          return oFragment;
+        }.bind(this));
+			} 
+			this.eFragment.then(function(oFragment) {
+				oFragment.open();
+			}.bind(this));
+		},
+    onOpenDialog1 : function () {
+
+			if (!this.sFragment) {
+				this.sFragment = this.loadFragment({
 					name: "gestione1.fragment.listaPNI",
           controller: this
 				}).then(function (oFragment) {
@@ -138,10 +159,65 @@ sap.ui.define(
           return oFragment;
         }.bind(this));
 			} 
-			this.pFragment.then(function(oFragment) {
+      var UIStateModel= this.getView().getModel("UIState");
+      var UIStateData= UIStateModel.getData();
+      UIStateData.visible = false;
+      UIStateModel.setData(UIStateData);
+			this.sFragment.then(function(oFragment) {
 				oFragment.open();
 			}.bind(this));
 		},
+    onOpenDialog2 : function () {
+
+			if (!this.dFragment) {
+				this.dFragment = this.loadFragment({
+					name: "gestione1.fragment.listaPNI",
+          controller: this
+				}).then(function (oFragment) {
+          this.getView().addDependent(oFragment);
+          return oFragment;
+        }.bind(this));
+			} 
+      var UIStateModel= this.getView().getModel("UIState");
+      var UIStateData= UIStateModel.getData();
+      UIStateData.visible = true;
+      UIStateModel.setData(UIStateData);
+			this.dFragment.then(function(oFragment) {
+				oFragment.open();
+			}.bind(this));
+		},
+    onOpenDialogModPag : function () {
+
+			if (!this.cFragment) {
+				this.cFragment = this.loadFragment({
+					name: "gestione1.fragment.regModPag",
+          controller: this
+				}).then(function (oFragment) {
+          this.getView().addDependent(oFragment);
+          return oFragment;
+        }.bind(this));
+			} 
+			this.cFragment.then(function(oFragment) {
+				oFragment.open();
+			}.bind(this));
+		},
+   
+    //  onClickButton1 : function(){
+    //    var UIStateModel= this.getView().getModel("UIState");
+    //    var UIStateData= UIStateModel.getData();
+    //   UIStateData.visible = false;
+    //   UIStateModel.setData(UIStateData);
+
+    //  },
+
+    //  onClickButton2 : function(){
+    //   var UIStateModel= this.getView().getModel("UIState");
+    //   var UIStateData= UIStateModel.getData();
+    //   UIStateData.visible = true;
+    //   UIStateModel.setData(UIStateData);
+
+    //  },
+
 
     onWarning2MessageBoxPress: function () {
       sap.m.MessageBox.warning("Servizio certificazione beneficiario avviato,in attesa di risposta, si prega di attendere", {
@@ -207,12 +283,18 @@ sap.ui.define(
 			}
 		},
 
-     onCloseDialog : function () {
+     onCloseDialog1 : function () {
 		 	this.byId("Anagrafica").close();
 		},
-    onCloseDialog : function () {
+    onCloseDialog2 : function () {
       this.byId("listaPNI").close();
    },
+   onCloseDialog3 : function () {
+    this.byId("regModPag").close();
+ },
+ onCloseDialog4 : function () {
+  this.byId("impPre").close();
+},
 
   controlSwitch: function () {
                 var oProprietà = this.getView().getModel();
@@ -227,6 +309,7 @@ sap.ui.define(
              }
             },
 
+          
       //       controlHeader: function () {
       //         var oProprietà = this.getView().getModel();
       //         this._oWizard = this.byId("CreateProductWizard");

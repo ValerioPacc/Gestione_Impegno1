@@ -164,7 +164,7 @@
                         <Toolbar>
                             <ToolbarSpacer />
                             <Button type="Emphasized" text="Richiedi Anagrafica Beneficiario" press="onOpenFragment"/>
-                            <Button type="Emphasized" text="Inserisci Mod.Pag.-Iban" />
+                            <Button type="Emphasized" text="Inserisci Mod.Pag.-Iban" press="onOpenDialogModPag"/>
                         </Toolbar>
                         <RadioButtonGroup id="GroupA" columns="3" width="100%">
                             <RadioButton text="Persona Fisica" selected="true" />
@@ -197,29 +197,35 @@
                             </VBox>
                         </form:SimpleForm>
                         
-                            
-                                <VBox class="columns" height="100px" alignItems="Center" justifyContent="Start" direction="Column">
-                                    <HBox>
+                            <HBox justifyContent="Center" class="sapUiLargeMarginBegin">
+                            <items>
+                                <VBox class="sapUiLargeMarginBegin">
+                                    
                                         <Label text="Codice Fiscale:" />
                                         <Input id="cFiscale" />
-                                        <Label text="Codice Fiscale Estero:" />
-                                        <Input id="cFiscaleE" />
-                                    </HBox>
-
-                                    <HBox>
                                         <Label text="Nome:" required="true" />
                                         <Input id="nome" />
-                                        <Label text="Cognome:" required="true" />
-                                        <Input id="cognome" />
-                                    </HBox>
-
-                                    <HBox>
                                         <Label text="Ragione Sociale:" required="true" />
                                         <Input id="rSociale" />
+                                        
+                                        </VBox>
+                                   
+
+                                   
+                                   
+                                    <VBox class="sapUiLargeMarginBegin">
+                                        <Label text="Codice Fiscale Estero:" />
+                                        <Input id="cFiscaleE" />
+                                        <Label text="Cognome:" required="true" />
+                                        <Input id="cognome" />
                                         <Label text="Partita IVA:" required="true" />
                                         <Input id="IVA" />
+                                        </VBox>
+                                    
+                                       
+                                        </items>
                                     </HBox>
-                                </VBox>
+                                
                                 <!-- <HBox alignItems="End" justifyContent="Start" direction="Column">
 
 
@@ -393,24 +399,35 @@
 		class="sapUiResponsiveContentPadding">
 		<items>
 			<IconTabFilter text="Competenza" key="info">
-            
-             <Table class="sapUiSizeCompact" id="HeaderITB1" includeItemInSelection="true"  visible="{/TableVisible}" >
+            	
+               
+                <content>
+             <Table class="sapUiSizeCompact" id="HeaderITB1" includeItemInSelection="true"  visible="{/TableVisible}"  >
         <headerToolbar>
             <OverflowToolbar height="100%">
-                <content>
                 
                     <ToolbarSpacer />
-				<Label text="Seleziona periodi:" vAlign="Inherit"/>
-               <ComboBox value=""/>
-               <Button type="Emphasized" icon="sap-icon://add" text="Aggiungi PNI/Autorizzazione" press="onOpenDialog"/>
+				 <Label text="Seleziona periodi:" labelFor="suggestionsMultiComboBox" vAlign="Inherit"/>
+               <ComboBox id="suggestionsMultiComboBox" >
+               <items>
+							<core:Item text="2023-2024-2025-2026" />
+							<core:Item text="2027-2028-2029-2030" />
+							<core:Item text="2031-2033-2034-2035" />
+							<core:Item text="2036-2037-2038-2039" />
+							<core:Item text="2040-2041-2042-2043" />
+							<core:Item text="2044-2045-2046-2047" />
+							<core:Item text="2048-2049-2050-2051" />
+							<core:Item text="2052-2053-2054-2056" />
+							<core:Item text="2057-2058-2059-2060" />
+							<core:Item text="2061-2062-2063-2064" />
+							
+						</items>
+                </ComboBox> 
+               <Button id="idPNI" type="Emphasized" icon="sap-icon://add" text="Aggiungi PNI/Autorizzazione" press="onOpenDialog1"/>
                <Button type="Emphasized" icon="sap-icon://delete" text="Elimina"/>
                <Button type="Emphasized" icon="sap-icon://excel-attachment" text="Esporta"/>
-               <Button type="Emphasized" icon="sap-icon://edit" text="Imposta previsioni"/>
-                
-              
-              
-               </content>
-              
+               <Button type="Emphasized" icon="sap-icon://edit" text="Imposta previsioni" press="onOpenGridTable"/>
+               
             </OverflowToolbar>
    
                     <!-- <Label text="Struttura Finanziaria:" vAlign="Inherit"/>
@@ -426,59 +443,29 @@
            
          
                <columns>
-            <Column width="60px">
+            <Column>
                 <Label text="Clausola" />
-            </Column>
-            <Column width="60px">
                 <Label text="Disponibilità PNI" />
-            </Column>
-            <Column width="60px">
                 <Label text="2023" />
-            </Column>
-            <Column width="60px">
                 <Label text="Disponibilità di cassa" />
             </Column>
-            <Column width="60px">
+            <Column >
                 <Label text="Clausola" />
-            </Column>
-            <Column width="60px">
                 <Label text="Disponibilità PNI" />
-            </Column>
-            <Column width="60px">
                 <Label text="2024" />
-            </Column>
-            <Column width="60px">
                 <Label text="Disponibilità di cassa" />
             </Column>
-            <Column width="60px">
+            <Column >
                 <Label text="Clausola" />
-            </Column>
-            <Column width="60px">
-                <Label text="Clausola" />
-            </Column>
-            <Column width="60px">
                 <Label text="Disponibilità PNI" />
-            </Column>
-            <Column width="60px">
-                <Label text="2023" />
-            </Column>
-            <Column width="60px">
+                <Label text="2025" />
                 <Label text="Disponibilità di cassa" />
             </Column>
-            <Column width="60px">
+             <Column >
                 <Label text="Clausola" />
-            </Column>
-            <Column width="60px">
                 <Label text="Disponibilità PNI" />
-            </Column>
-            <Column width="60px">
-                <Label text="2024" />
-            </Column>
-            <Column width="60px">
+                <Label text="2026" />
                 <Label text="Disponibilità di cassa" />
-            </Column>
-            <Column width="60px">
-                <Label text="Clausola" />
             </Column>
         </columns>
         <ColumnListItem>
@@ -494,23 +481,24 @@
         </ColumnListItem>
       
     </Table>
-     
+    </content>
+    
 			</IconTabFilter>
-			<IconTabFilter text="Residui" key="results">
-				<Table scrollX="true" class="sapUiSizeCompact" id="HeaderITB2" includeItemInSelection="true"  visible="{/TableVisible}">
+			<IconTabFilter text="Residui" key="results" >
+				<Table scrollX="true" class="sapUiSizeCompact" id="HeaderITB2" includeItemInSelection="true" mode="MultiSelect" visible="{/TableVisible}">
+                 
         <headerToolbar>
+        
             <OverflowToolbar>
                 <content>
-                
-                    <ToolbarSpacer />
-				<Label text="Seleziona periodi:" vAlign="Inherit"/>
-               <ComboBox value=""/>
-               <Button type="Emphasized" icon="sap-icon://add" text="Aggiungi PNI/Autorizzazione"/>
+                <ToolbarSpacer />
+               <Button id="idERP" type="Emphasized" icon="sap-icon://add" text="Aggiungi ERP/PNI/Autorizzazione" press="onOpenDialog2"/>
                <Button type="Emphasized" icon="sap-icon://delete" text="Elimina"/>
                <Button type="Emphasized" icon="sap-icon://excel-attachment" text="Esporta"/>
-               <Button type="Emphasized" icon="sap-icon://edit" text="Imposta previsioni"/>
+               <Button type="Emphasized" icon="sap-icon://edit" text="Imposta previsioni" press="onOpenGridTable"/>
                </content>
             </OverflowToolbar>
+            </headerToolbar>
 <!-- <Toolbar>
                <VBox>
                <HBox>
@@ -523,10 +511,6 @@
                </Toolbar> -->
                     <!-- <Label text="Struttura Finanziaria:" vAlign="Inherit"/>
                <Label text="Struttura Amministrativa Responsabile:" vAlign="Inherit"/> -->
-               
-        </headerToolbar>
-               
-               
                <columns>
             <Column width="10%">
                 <Label text="Codice ISIN" />
@@ -569,11 +553,8 @@
         </ColumnListItem>
     </Table>
 			</IconTabFilter>
-			
 		</items>
 	</IconTabBar>
-                    
-                    
                         <OverflowToolbar>
                             <Button text="Indietro" type="Emphasized"  press="onBackButton" />
                             <ToolbarSpacer/>

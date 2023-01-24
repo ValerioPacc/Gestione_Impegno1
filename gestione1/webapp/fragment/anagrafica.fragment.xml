@@ -131,7 +131,7 @@
          </f:formContainers>
       </f:Form>
       <beginButton>
-       <Button text="Indietro" type="Emphasized" press="onCloseDialog"/>
+       <Button text="Indietro" type="Emphasized" press="onCloseDialog1"/>
       </beginButton>
       <endButton>
         <Button text="Salva" type="Emphasized" press="onOpenFragmentBusyDialog"/>

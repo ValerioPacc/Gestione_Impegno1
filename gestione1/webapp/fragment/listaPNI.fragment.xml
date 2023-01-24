@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
      <Dialog id="listaPNI" title="Lista PNI - Autorizzazioni" draggable="true" showHeader="true" titleAlignment="Center"
-      afterClose="onAfterClose" contentWidth="80%" contentHeight="80%">
+      afterClose="onAfterClose" contentWidth="100%" contentHeight="100%">
       
       
                 <content>
@@ -9,18 +9,20 @@
                <Input text="{}" editable="fale"/>
                <Label text="Struttura Amministrativa Responsabile:" vAlign="Inherit"/>
                 <Input text="{}" editable="fale"/>
+                <Label text="ERP:" class="sapUiSmallMargin" required="true" vAlign="Inherit" visible="{UIState>/visible}"/>
+               <ComboBox value="" width="50%"  visible="{UIState>/visible}"/>
                 <Label text="PNI:" required="true" vAlign="Inherit"/>
-               <ComboBox value="" showValueHelp=""/>
+               <Input value=""  showValueHelp=""/>
                 </HBox>
                 <VBox>
-                <CheckBox id="Au1" text="Autorizzazione:" selected="true"/>
-                <CheckBox id="Au2" text="Autorizzazione:" selected="true"/>
+                <CheckBox  text="Autorizzazione:" selected="true"/>
+                <CheckBox  text="Autorizzazione:" selected="true"/>
                 </VBox>
                 </content>
                 
                 
       <beginButton>
-       <Button text="Indietro" type="Emphasized" press="onCloseDialog"/>
+       <Button text="Indietro" type="Emphasized" press="onCloseDialog2"/>
       </beginButton>
       <endButton>
         <Button text="Conferma" type="Emphasized" press=""/>

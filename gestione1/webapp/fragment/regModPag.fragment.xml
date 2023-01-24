@@ -1,0 +1,63 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+     <Dialog id="regModPag"  draggable="true" showHeader="true" titleAlignment="Start"
+      afterClose="onAfterClose" contentWidth="100%"  contentHeight="100%">
+       <Panel  headerLevel="H4" accessibleRole="Form" collapsed="false" toggle="handleToggle">
+        <content>
+        <Toolbar height="100%" width="100%">
+            <HBox alignItems="Center" alignContent="Center">
+            
+                <VBox alignItems="Center" alignContent="Center">
+                <items>
+                     <Label text="Beneficiario:" required="true" />
+                        <Input value="" showValueHelp="true" />
+                        </items>
+                        </VBox>
+                        <ToolbarSpacer />
+                    <VBox alignItems="Center" alignContent="Center">
+                     <items>
+                        <Label text="Modalità di Pagamento" labelFor="IBAN" required="true" />
+                        <ComboBox required="true" items="" >
+                            <core:Item key="1" text="1" />
+                            <core:Item key="2" text="2" />
+                        </ComboBox>
+                       </items>
+                   </VBox>
+<ToolbarSpacer />
+                   <VBox alignItems="Center" alignContent="Center">
+                       <items>
+
+                        <Label text="IBAN:" required="true" />
+                        <Input value="" />
+                       </items>
+                        
+                    </VBox>
+                  </HBox>
+                   </Toolbar>
+               <OverflowToolbar>
+          <Button text="Indietro" type="Emphasized" press="onCloseDialog3"/>
+                         </OverflowToolbar>
+
+        </content>
+    </Panel>
+
+
+
+
+     <!-- <Toolbar height="100%" width="100%">
+     <Label align="Center" text="Beneficiario" required="true" />
+     <Input align="Center" text="" showValueHelp="true" width="33%"/>
+     <ToolbarSpacer/>
+     <Label align="Center" text="Modalità di Pagamento" required="true"/>
+     <ComboBox align="Center" text="" width="33%"/>
+     <ToolbarSpacer/>
+      <Label align="Center" text="IBAN" required="true"/>
+     <Input align="Center" text="" width="33%"/>
+     </Toolbar>
+      <beginButton>
+       <Button text="Indietro" type="Emphasized" press="onCloseDialog3"/>
+      </beginButton>
+      <endButton>
+        <Button text="Salva" type="Emphasized" />
+      </endButton> -->
+   </Dialog>
+   </core:FragmentDefinition>

@@ -10,110 +10,63 @@
     xmlns:core="sap.ui.core"
     xmlns:menu="sap.m.MenuItem"
     xmlns:menBtn="sap.m.Menu"
+    xmlns:tnt="sap.tnt"
     height="100%"
     controllerName="gestione1.controller.registraIPE"
 >
     <f:DynamicPage id="dynamicPageId" showFooter="true">
         <f:header>
             <f:DynamicPageHeader pinnable="false">
-                <layout:HorizontalLayout allowWrapping="true">
                     <layout:VerticalLayout class="sapUiMediumMarginEnd">
-                        <ObjectAttribute title="Dati Decreto" />
-                        <ObjectAttribute text="Esercizio Decreto 2023" />
-                    </layout:VerticalLayout>
-                </layout:HorizontalLayout>
-                  
+                        <Title text="Dati Decreto:" />
+                        <layout:HorizontalLayout wrapping="true">
+                        <Label text="Esercizio Decreto:" class="sapUiSmallMarginEnd" />
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Label text="Amministrazione:" class="sapUiSmallMarginEnd" />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                     <Label text="N.Bozza:" class="sapUiSmallMarginEnd"/>
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Label text="Data Decreto:" class="sapUiSmallMarginEnd" />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                     <Label text="Ragioneria:" class="sapUiSmallMarginEnd" />
+                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Label text="Stato Decreto:" class="sapUiSmallMarginEnd"  />
+                    <Text  text="" class="sapUiMediumMarginEnd"/>
+               </layout:HorizontalLayout >
+                </layout:VerticalLayout>
+           
             </f:DynamicPageHeader>
-            
+           
         </f:header> 
-        <!-- <f:content>
-          	<VBox class="sapUiSmallMargin">
-		<form:SimpleForm id="SimpleFormToolbar"
-			editable="true"
-			layout="ResponsiveGridLayout"
-			labelSpanXL="4"
-			labelSpanL="3"
-			labelSpanM="4"
-			labelSpanS="12"
-			adjustLabelSpan="false"
-			emptySpanXL="0"
-			emptySpanL="4"
-			emptySpanM="0"
-			emptySpanS="0"
-			columnsXL="2"
-			columnsL="1"
-			columnsM="1"
-			singleContainerFullSize="false"
-			ariaLabelledBy="Title1" >
-            <VBox>
-			
-					<Title id="Title1" text="Address"/>
-					
-    
-			
-</VBox>
-
-<VBox alignItems="End">
-<IconTabBar id="idIconTabBar" class="sapUiResponsiveContentPadding" >
-    <items>
-                    
-                    <IconTabFilter icon="sap-icon://detail-view" text="Lista IPE" >
-                    </IconTabFilter>
-                    </items>
-    </IconTabBar>
-</VBox>
-
-
-
-
-
-            </form:SimpleForm>
-            </VBox>
-
-       </f:content> -->
+      
        <f:content>
-       <Toolbar height="100%" width="100%" title="bibhibibi">
+       <!-- <HBox>
+      	<Title text="Registrazione IPE" class="header"/>
+        </HBox> -->
+        <IconTabBar id="idIconTabBar" class="sapUiLargeMarginStart" select="onSelect" alignItems="End" >
+                <items>
+                <IconTabFilter icon="sap-icon://list" text="Lista IPE"  > 
+                 <OverflowToolbar height="50%" width="100%">
        <ToolbarSpacer />
-                            <Button align="Center" type="Emphasized" text="Registra IPE Apertura"  width="33%" press="navToWizard"/>
-                            <ToolbarSpacer />
-                            <Button align="Center" type="Emphasized" text="Registra IPE di Variazione" width="33%" />
-                            <ToolbarSpacer />
-                            <Button align="Center" type="Emphasized" text="Registra Atto di Annullamento" width="33%" />
-                       
-                        </Toolbar>
+                            <Button align="Center" type="Emphasized" text="Registra IPE Apertura" width="30%" class="button"  press="navToWizard"/>
+                           
+                            <Button align="Center" type="Emphasized" text="Registra IPE di Variazione" width="30%" />
+                            
+                            <Button align="Center" type="Emphasized" text="Registra Atto di Annullamento" width="30%"/>
+                    <ToolbarSpacer />   
+                        </OverflowToolbar>
+                </IconTabFilter>
+                </items>
+            </IconTabBar>
+            
                         </f:content>
-       <!-- </f:content>
-          <f:content>
-	
- <IconTabBar id="idIconTabBar" class="sapUiResponsiveContentPadding" >
-    <items>
-                    
-                    <IconTabFilter icon="sap-icon://detail-view" text="Lista IPE" >
-                    </IconTabFilter>
-                    </items>
-    </IconTabBar>  -->
-                        <!-- <Toolbar>
-                            <Button align="Center" type="Emphasized" text="Registra IPE Apertura" width="33%" press="navToWizard"/>
-                            <ToolbarSpacer />
-                            <Button align="Center" type="Emphasized" text="Registra IPE di Variazione" width="33%" />
-                            <ToolbarSpacer />
-                            <Button align="Center" type="Emphasized" text="Registra Atto di Annullamento" width="33%" />
-                        </Toolbar>  -->
-                        
-            <!-- <Toolbar >
-        <Button align="Center" type="Emphasized"  text="Registra IPE Apertura" width="33%" />
-        <ToolbarSpacer/>
-        <Button align="Center" type="Emphasized"  text="Registra IPE di Variazione" width="33%" />
-        <ToolbarSpacer/>
-        <Button align="Center" type="Emphasized"  text="Registra Atto di Annullamento" width="33%" />
-        </Toolbar> -->
 
         
         <f:footer>
             <OverflowToolbar>
-                <Button type="Emphasized" text="{i18n>Indietro}" press="onBackButton" />
+                <Button type="Emphasized" text="{i18n>Indietro}" press="onBackButton" width="7%" />
                 <ToolbarSpacer/>
-                <Button type="Emphasized" text="{i18n>RegDEprov}" press="onBackButton" />
+                <Button type="Emphasized" text="{i18n>RegDEprov}" press="onBackButton"  width="20%"/>
             </OverflowToolbar>
         </f:footer>
     </f:DynamicPage>
