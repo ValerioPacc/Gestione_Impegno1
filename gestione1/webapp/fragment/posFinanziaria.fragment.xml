@@ -1,140 +1,250 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">>
-	<Dialog id="Anagrafica"  draggable="true" showHeader="true" titleAlignment="Start"
-      afterClose="onAfterClose" contentWidth="auto" contentHeight="80%">
-      <f:Form editable="false" title="Dati Anagrafica Bancario">
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+    >
+    <Dialog id="PosFinanziaria" title="Ricerca Posizione Finanziaria" draggable="true" showHeader="true" titleAlignment="Start" afterClose="onAfterClose" contentWidth="100%" contentHeight="100%">
+
+ <Toolbar>
+                    <ToolbarSpacer/>
+                    <Title text="Cerca Posizione Finanziaria" textAlign="Center"/>
+                    <ToolbarSpacer/>
+                    </Toolbar>   
+
+                            <f:Form editable="false" >
          <f:layout>
-            <f:ColumnLayout columnsM="1" columnsL="1" columnsXL="1"/>
+            <f:ColumnLayout columnsM="2" columnsL="2" columnsXL="2"/>
          </f:layout>
          <f:formContainers>
-            <f:FormContainer>
+            <f:FormContainer expandable="true" expanded="true">
                <f:FormElement visible="{dialogModel>/GgVisible}">
                   <f:label>
-                     <Label text="Paese" required= "true"/>
+                     <Label text="Struttura Amministrativa" />
                   </f:label>
                   <f:fields>
-                     <MultiInput id="inputPaese" class="validateFilter" value="{}" width="10%">
-                     <core:Item key="{comboBox>}" text="{comboBox>}" />
-                     </MultiInput>
-                      <Input id="input" class="validateFilter" value="{}"></Input>
+                     <Input id="strAmm" showValueHelp="false" showSuggestion="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: 'PosizioneFinanziaria' }}">
+                      <core:Item key="{PosizioneFinanziaria}" text="{PosizioneFinanziaria}"/>
+                      </Input>
                   </f:fields>
                </f:FormElement>
+              
                <f:FormElement>
                         <f:label>
-                            <Label text="Cat.Beneficiario" required= "true"/>
+                            <Label text="Amm." />
                         </f:label>
                         <f:fields>
-                        <Select selectedKey="" items="{>/}">
-                        <core:Item key="{}" text="{}" />
-                        </Select>
+                         <Input showSuggestion="true" id="amm" showValueHelp="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: 'Amministrazione' }}">
+                           <core:Item key="{Amministrazione}" text="{Amministrazione}"/>
+                         </Input>
                         </f:fields>
                 </f:FormElement>
                 <f:FormElement visible="{dialogModel>/GgVisible}">
                   <f:label>
-                     <Label text="Documentazione Beneficiario" required= "true"/>
+                     <Label text="Missione" required= "true"/>
                   </f:label>
                   <f:fields>
-                     <Input id="docBen" class="validateFilter" value="{}">
-                     </Input>
-                  </f:fields>
-               </f:FormElement>
-               <f:FormElement visible="{dialogModel>/GgVisible}">
-                  <f:label>
-                     <Label text="Nome" required= "true"/>
-                  </f:label>
-                  <f:fields>
-                     <Input id="inputNome" class="validateFilter" value="{}">
-                     </Input>
-                  </f:fields>
-               </f:FormElement>
-               <f:FormElement visible="{dialogModel>/GgVisible}">
-                  <f:label>
-                     <Label text="Cognome" required= "true"/>
-                  </f:label>
-                  <f:fields>
-                     <Input id="inputCog" class="validateFilter" value="{}">
-                     </Input>
-                  </f:fields>
-               </f:FormElement>
-               <f:FormElement visible="{dialogModel>/GgVisible}">
-                  <f:label>
-                     <Label text="Via" required= "true"/>
-                  </f:label>
-                  <f:fields>
-                     <Input id="inputVia" class="validateFilter" value="{}">
-                     </Input>
-                      <Input class="validateFilter" value="{}" width="30%">
-                     </Input>
+                     <Input showSuggestion="true" id="missionId" showValueHelp="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
                   </f:fields>
                </f:FormElement>
                 <f:FormElement visible="{dialogModel>/GgVisible}">
                   <f:label>
-                     <Label text="Località" required= "true" labelFor="inputLoc"/>
-                    
+                     <Label text="Programma" required= "true"/>
                   </f:label>
                   <f:fields>
-                     <Input id="inputLoc" class="validateFilter" value="{}" width="120%">
-                     </Input>
-                     <Input id="inputReg1" class="validateFilter" value="{}" >
-                     </Input>
-                     </f:fields>
-                     <Input class="validateFilter" value="{}" width="120%" >
-                     </Input>
-                  
+                     <Input showSuggestion="true" id="programmId" showValueHelp="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
                </f:FormElement>
                  <f:FormElement visible="{dialogModel>/GgVisible}">
                   <f:label>
-                     <Label text="CAP" required= "true"/>
+                     <Label text="Azione" required= "true"/>
                   </f:label>
                   <f:fields>
-                     <Input id="inputCAP" class="validateFilter" value="{}">
-                     </Input>
+                     <Input showSuggestion="true" id="actionId" showValueHelp="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+                 <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="Capitolo" required= "true"/>
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="capitoloId" showValueHelp="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+                 <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="PG" required= "true"/>
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="pgId" showValueHelp="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+                 <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="categoria" required= "true"/>
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="categoriaId" showValueHelp="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+                 <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="C.E.2" required= "true"/>
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="ce2Id" showValueHelp="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+                 <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="C.E.3" required= "true"/>
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="ce3Id" showValueHelp="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+              <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="Nr. Massimo Risultati " />
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="risulMaxId" showValueHelp="false" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+               <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="Descr. Ammin." />
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="descAmmId" showValueHelp="false" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+               <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="Descr. Missione" />
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="descMissId" showValueHelp="false" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+              <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="Descr. Programma" />
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="descProgId" showValueHelp="false" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+              <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="Descr. Azione"/>
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="descActId" showValueHelp="false" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+              <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="Descr. Capitolo" />
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="descCapId" showValueHelp="false" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+                <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="Descr. Pg" />
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="descPgId" showValueHelp="false" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+               <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="Descr. Categoria" />
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="descCatId" showValueHelp="false" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+               <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="Descr. C.E.2" />
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="descCe2Id" showValueHelp="false" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
+                  </f:fields>
+               </f:FormElement>
+               <f:FormElement visible="{dialogModel>/GgVisible}">
+                  <f:label>
+                     <Label text="Descr.C.E.3" />
+                  </f:label>
+                  <f:fields>
+                     <Input showSuggestion="true" id="descCe3Id" showValueHelp="false" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}">
+                           <core:Item key="{}" text="{}"/>
+                         </Input>
                   </f:fields>
                </f:FormElement>
   </f:FormContainer>
          </f:formContainers>
       </f:Form>
-               <f:Form editable="false" title="Dati Fiscali Beneficiario ">
-         <f:layout>
-            <f:ColumnLayout columnsM="1" columnsL="1" columnsXL="1"/>
-         </f:layout>
-         <f:formContainers>
-            <f:FormContainer>
-                <f:FormElement>
-                        <f:label>
-                            <Label text="Codice Fiscale" required= "true"/>
-                        </f:label>
-                        <f:fields>
-                        <Input id="inputCF" class="validateFilter" value="{}" >
-                     </Input>
-                        </f:fields>
-                </f:FormElement>
-                <f:FormElement>
-                        <f:label>
-                            <Label text="Partita IVA" />
-                        </f:label>
-                        <f:fields>
-                        <Input id="inputPiva" class="validateFilter" value="{}" >
-                     </Input>
-                        </f:fields>
-                </f:FormElement>
-                <f:FormElement>
-                        <f:label>
-                            <Label text="Codice Fiscale/Iva" />
-                        </f:label>
-                        <f:fields>
-                        <Input id="inputCfPiva" class="validateFilter" value="{}" >
-                     </Input>
-                        </f:fields>
-                </f:FormElement>
-                
-            </f:FormContainer>
-         </f:formContainers>
-      </f:Form>
-      <beginButton>
-       <Button text="Indietro" press="onCloseDialog"/>
-      </beginButton>
-      <endButton>
-        <Button text="Salva" type="Emphasized" press="onOpenFragmentBusyDialog"/>
-      </endButton>
-   </Dialog>
+
+        <!-- <HBox  class="sapUiMediumMarginTop">
+            <items>
+                <VBox class="sapUiSmallMarginEnd">
+                    <Label text="Codice Fiscale:" class="sapUiLargeMarginEnd"/>
+                    <Input class="sapUiLargeMarginEnd" width="150%"/>
+                    <Label text="Nome:" required="true" class="sapUiLargeMarginEnd"/>
+                    <Input  class="sapUiLargeMarginEnd"/>
+                    <Label text="Ragione Sociale:" required="true" class="sapUiLargeMarginEnd"/>
+                    <Input  class="sapUiLargeMarginEnd"/>
+                </VBox>
+
+                <VBox class="sapUiLargeMarginBegin">
+                    <Label text="Codice Fiscale Estero:" class="sapUiLargeMarginBegin"/>
+                    <Input  class="sapUiLargeMarginBegin"/>
+                    <Label text="Cognome:" required="true" class="sapUiLargeMarginBegin"/>
+                    <Input  class="sapUiLargeMarginBegin"/>
+                    <Label text="Partita IVA:" required="true" class="sapUiLargeMarginBegin"/>
+                    <Input  class="sapUiLargeMarginBegin"/>
+                </VBox>
+            </items>
+        </HBox> -->
+        <beginButton>
+            <Button text="Conferma"  type="Emphasized" />
+        </beginButton>
+        <endButton>
+            <Button text="Chiudi" type="Emphasized" press="onCloseDialog" />
+        </endButton>
+    </Dialog>
 </core:FragmentDefinition>

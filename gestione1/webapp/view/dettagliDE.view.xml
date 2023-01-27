@@ -73,12 +73,17 @@
                         <Text  text="" class="sapUiMediumMarginEnd"/>
                </layout:HorizontalLayout >
                 </layout:VerticalLayout>
+                <OverflowToolbar>
+                <ToolbarSpacer/>
+                <Button text="Inserisci dati per invio alla firma" type="Emphasized"/>
+                </OverflowToolbar>
             </f:DynamicPageHeader>
         </f:header>
         <f:content>
-            <IconTabBar  class="sapUiResponsiveContentPadding" select="onSelect">
+            <IconTabBar id="idIconTabBar" class="sapUiResponsiveContentPadding" select="onSelect" >
                 <items>
-                    <IconTabFilter icon="sap-icon://list" text="Lista IPE" key="ListaIPE">  
+                    <IconTabFilter icon="sap-icon://list" text="Lista IPE" key="ListaIPE" >
+                      <core:Fragment fragmentName="gestione1.fragment.listaIPE" type="XML"  />
                     </IconTabFilter>
                     <IconTabSeparator/>
                     <IconTabFilter icon="sap-icon://history" text="Workflow" key="Workflow">
@@ -99,9 +104,9 @@
             <OverflowToolbar>
                 <Button text="Indietro" type="Emphasized" press="onBackButton" />
                 <ToolbarSpacer />
-                <Button type="Emphasized" text="Registra IPE"   />
+                <Button type="Emphasized" text="Registra IPE"  press="navToRegistraIPE" />
                 <Button type="Emphasized" text="Rettifica Decreto"   />
-                <Button type="Emphasized" text="Cancella Decreto"   />
+                <Button type="Emphasized" text="Cancella Decreto" press="onConfirmationCancelMessageBoxPress" />
             </OverflowToolbar>
         </f:footer>
     </f:DynamicPage>

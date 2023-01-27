@@ -50,9 +50,9 @@
        <ToolbarSpacer />
                             <Button align="Center" type="Emphasized" text="Registra IPE Apertura" width="30%" class="button"  press="navToWizard"/>
                            
-                            <Button align="Center" type="Emphasized" text="Registra IPE di Variazione" width="30%" />
+                            <Button align="Center" type="Emphasized" text="Registra IPE di Variazione" width="30%" press="navToWizard"/>
                             
-                            <Button align="Center" type="Emphasized" text="Registra Atto di Annullamento" width="30%"/>
+                            <Button align="Center" type="Emphasized" text="Registra Atto di Annullamento" width="30%" press="navToView1"/>
                     <ToolbarSpacer />   
                         </OverflowToolbar>
                 </IconTabFilter>
@@ -64,9 +64,9 @@
         
         <f:footer>
             <OverflowToolbar>
-                <Button type="Emphasized" text="{i18n>Indietro}" press="onBackButton" width="7%" />
+                <Button type="Emphasized" text="{i18n>Indietro}" press="onBackButton1" width="7%" />
                 <ToolbarSpacer/>
-                <Button type="Emphasized" text="{i18n>RegDEprov}" press="onBackButton"  width="20%"/>
+                <Button type="Emphasized" text="{i18n>RegDEprov}" press="onSuccessMessageDialogPress"  width="20%"/>
             </OverflowToolbar>
         </f:footer>
     </f:DynamicPage>

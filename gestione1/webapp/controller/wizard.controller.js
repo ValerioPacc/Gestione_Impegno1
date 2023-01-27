@@ -8,10 +8,11 @@ sap.ui.define(
     "sap/ui/core/Fragment",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
+    "sap/m/SearchField",
     "./BaseController"
 
   ],
-  function (BaseController,CoreLibrary,JSONModel,MessageBox,syncStyleClass,Fragment,Filter,FilterOperator) {
+  function (BaseController,CoreLibrary,JSONModel,MessageBox,syncStyleClass,Fragment,Filter,FilterOperator,SearchField) {
     "use strict";
     var iTimeoutId;
     var ValueState = CoreLibrary.ValueState,
@@ -158,7 +159,7 @@ sap.ui.define(
           this.getView().addDependent(oFragment);
           return oFragment;
         }.bind(this));
-			} 
+			}
       var UIStateModel= this.getView().getModel("UIState");
       var UIStateData= UIStateModel.getData();
       UIStateData.visible = false;
@@ -171,7 +172,7 @@ sap.ui.define(
 
 			if (!this.dFragment) {
 				this.dFragment = this.loadFragment({
-					name: "gestione1.fragment.listaPNI",
+					name: "gestione1.fragment.listaERP",
           controller: this
 				}).then(function (oFragment) {
           this.getView().addDependent(oFragment);
@@ -236,7 +237,7 @@ sap.ui.define(
   },
   onError2MessageBoxPress: function () {
     MessageBox.error("Impossibile certificare il beneficiario, procedere con la creazione con i dati inseriti manualmente?", {
-      actions: ["OK", MessageBox.Action.CLOSE],
+      actions: ["OK", MessageBox.Action.CLOSE,],
       emphasizedAction: "Annulla",
       onClose: function (sAction) {
         MessageBox.error("Operazione interrotta, nessun beneficiario creato " + sAction);
@@ -283,10 +284,13 @@ sap.ui.define(
 			}
 		},
 
+    onCloseDialog : function () {
+      this.byId("PosFinanziaria").close();
+    },
      onCloseDialog1 : function () {
 		 	this.byId("Anagrafica").close();
 		},
-    onCloseDialog2 : function () {
+     onCloseDialog2 : function () {
       this.byId("listaPNI").close();
    },
    onCloseDialog3 : function () {
@@ -295,6 +299,13 @@ sap.ui.define(
  onCloseDialog4 : function () {
   this.byId("impPre").close();
 },
+onCloseDialog5 : function () {
+  this.byId("listaERP").close();
+},
+onCloseDialog6 : function () {
+  this.byId("StruAmmResp").close();
+},
+
 
   controlSwitch: function () {
                 var oProprietà = this.getView().getModel();
@@ -326,6 +337,17 @@ sap.ui.define(
       // },
 
       onValueHelpRequest: function (oEvent) {
+        // this._oBasicSearchField = new SearchField();
+        // if (!this.pDialog) {
+        //   this.pDialog = this.loadFragment({
+        //     name: "gestione1.fragment.posFinanziaria",
+        //     controller: this
+        //   }).then(function (oDialog) {
+        //           oView.addDependent(oDialog);
+        //           syncStyleClass("sapUiSizeCompact", this.getView(), oDialog);
+        //         return oDialog;
+        //       }.bind(this));
+        //      }
         var sInputValue = oEvent.getSource().getValue(),
           oView = this.getView();
   
@@ -341,12 +363,42 @@ sap.ui.define(
         }.bind(this));
       }
          
-        // this._pValueHelpDialog.then(function(oDialog) {
-        //   // Create a filter for the binding
-        //   oDialog.getBinding("items").filter([new Filter("Name", FilterOperator.Contains, sInputValue)]);
-        //   // Open ValueHelpDialog filtered by the input's value
-        //   oDialog.open(sInputValue);
-        // });
+        this._pValueHelpDialog.then(function(oDialog) {
+          // Create a filter for the binding
+          //oDialog.getBinding("items").filter([new Filter("Name", FilterOperator.Contains, sInputValue)]);
+          // Open ValueHelpDialog filtered by the input's value
+          oDialog.open(sInputValue);
+        });
+        
+
+
+
+
+      },
+
+      onValueHelpRequest2: function (oEvent) {
+        var sInputValue = oEvent.getSource().getValue(),
+          oView = this.getView();
+  
+        if (!this._pValueHelpDialog) {
+          this._pValueHelpDialog = Fragment.load({
+            id: oView.getId(),
+            name: "gestione1.fragment.struAmmResp",
+            controller: this
+          }).then(function (oDialog) {
+            oView.addDependent(oDialog);
+            syncStyleClass("sapUiSizeCompact", this.getView(), oDialog);
+          return oDialog;
+        }.bind(this));
+      }
+         
+        this._pValueHelpDialog.then(function(oDialog) {
+          // Create a filter for the binding
+          //oDialog.getBinding("items").filter([new Filter("Name", FilterOperator.Contains, sInputValue)]);
+          // Open ValueHelpDialog filtered by the input's value
+          oDialog.open(sInputValue);
+        });
+
       },
       onChangeSelect: function () {
         var bSelected= this.getView().byId("CB1").getSelected();

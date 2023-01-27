@@ -9,7 +9,7 @@
     xmlns:core="sap.ui.core"
     xmlns:menu="sap.m.MenuItem"
     xmlns:menBtn="sap.m.Menu" height="100%">
-    <Table class="sapUiSizeCompact" id="DecretoGI" items="{DecretoGI>/}" includeItemInSelection="true"  mode="SingleSelect">
+    <Table class="sapUiSizeCompact" id="DecretoGI" items="{DecretoGI>/}" includeItemInSelection="true"  mode="SingleSelect" >
         <headerToolbar>
             <OverflowToolbar>
                 <content>
@@ -20,44 +20,44 @@
             </OverflowToolbar>
         </headerToolbar>
         <columns>
-            <Column width="12%">
+            <Column demandPopin="true" hAlign="Center" >
                 <Label text="Esercizio Decreto" />
             </Column>
-            <Column width="22%">
+            <Column demandPopin="true" hAlign="Center">
                 <Label text="Amminastrazione" />
             </Column>
-            <Column width="13%">
+            <Column demandPopin="true" hAlign="Center">
                 <Label text="Uff. I Livello" />
             </Column>
-            <Column width="12%">
+            <Column demandPopin="true" hAlign="Center">
                 <Label text="Uff. II Livello" />
             </Column>
-            <Column width="5%">
+            <Column demandPopin="true" hAlign="Center">
                 <Label text="N. Decreto" />
             </Column>
-            <Column width="10%">
+            <Column demandPopin="true" hAlign="Center">
                 <Label text="Data Decreto" />
             </Column>
-            <Column width="12%">
+            <Column demandPopin="true" hAlign="Center">
                 <Label text="Ragioneria" />
             </Column>
-            <Column width="12%">
+            <Column demandPopin="true" hAlign="Center">
                 <Label text="Tipologia impegno " />
             </Column>
-             <Column width="12%">
+             <Column demandPopin="true" hAlign="Center">
                 <Label text="Stato Decreto" />
             </Column>
         </columns>
-        <ColumnListItem>
-            <Text text="{DecretoGI>Esercizio Decreto}" />
-            <Text text="{DecretoGI>Amminastrazione}" />
-            <Text text="{DecretoGI>Uff. I Livello}" />
-            <Text text="{DecretoGI>Uff. II Livello}" />
-            <Text text="{DecretoGI>N. Decreto}" />
-            <Text text="{DecretoGI>Data Decreto" />
+        <ColumnListItem type="Active">
+            <Text text="{DecretoGI>Esercizio}" />
+            <Text text="{DecretoGI>Amministrazione}" />
+            <Text text="{DecretoGI>UffILivello}" />
+            <Text text="{DecretoGI>UffIILivello}" />
+            <Text text="{DecretoGI>NumeroDecreto}" />
+            <Text text="{DecretoGI>DataDecreto}" />
             <Text text="{DecretoGI>Ragioneria}" />
-            <Text text="{DecretoGI>Tipologia impegno" />
-            <Text text="{DecretoGI>Stato Decreto}" />
+            <Text text="{DecretoGI>TipologiaImpegno}" />
+            <Text text="{DecretoGI>StatoDecreto}" />
 
         </ColumnListItem>
     </Table>
