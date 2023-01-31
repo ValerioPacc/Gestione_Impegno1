@@ -20,9 +20,9 @@
                         <Title text="Dati Amminastrazione" />
                         <layout:HorizontalLayout wrapping="true">
                         <Label text="Dirigente/Direttore Firmatario:" class="sapUiSmallMarginEnd" />
-                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                        <Text  text="{DirigenteDirettoreFirmatario}" class="sapUiMediumMarginEnd"/>
                     <Label text="Data Firma:" class="sapUiSmallMarginEnd" />
-                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Text  text="{DataFirma}" class="sapUiMediumMarginEnd"/>
                      <Label text="Ufficio Amministrazione:" class="sapUiSmallMarginEnd"/>
                         <Text  text="" class="sapUiMediumMarginEnd"/>
                </layout:HorizontalLayout >
@@ -32,29 +32,29 @@
                         <Title text="Dati Decreto" />
                         <layout:HorizontalLayout wrapping="true">
                         <Label text="Esercizio Decreto:" class="sapUiSmallMarginEnd" />
-                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                        <Text  text="{Esercizio}" class="sapUiMediumMarginEnd"/>
                     <Label text="Amminstrazione:" class="sapUiSmallMarginEnd" />
-                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Text  text="{Amminstrazione}" class="sapUiMediumMarginEnd"/>
                      <Label text="N.Decreto:" class="sapUiSmallMarginEnd"/>
-                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                        <Text  text="{NumeroDecreto}" class="sapUiMediumMarginEnd"/>
                     <Label text="N.IPE:" class="sapUiSmallMarginEnd" />
-                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Text  text="{NumeroIPE}" class="sapUiMediumMarginEnd"/>
                      <Label text="Data Decreto:" class="sapUiSmallMarginEnd" />
-                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                        <Text  text="{DataDecreto}" class="sapUiMediumMarginEnd"/>
                     <Label text="N.Protocollo Amm.:" class="sapUiSmallMarginEnd"  />
-                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Text  text="{NProtocolloAmm}" class="sapUiMediumMarginEnd"/>
                </layout:HorizontalLayout >
                <layout:HorizontalLayout wrapping="true"  class="sapUiMediumMarginTop">
                 <Label text="N.Protocollo Amm.:" class="sapUiSmallMarginEnd"  />
-                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Text  text="{NProtocolloAmm}" class="sapUiMediumMarginEnd"/>
                         <Label text="Stato Decreto:" class="sapUiSmallMarginEnd" />
-                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                        <Text  text="{StatoDecreto}" class="sapUiMediumMarginEnd"/>
                     <Label text="Tipologia Impegno:" class="sapUiSmallMarginEnd" />
-                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Text  text="{TipologiaImpegno}" class="sapUiMediumMarginEnd"/>
                      <Label text="Contratto:" class="sapUiSmallMarginEnd"/>
-                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                        <Text  text="{ContrattoOrdine}" class="sapUiMediumMarginEnd"/>
                     <Label text="Controllo preventivo Corte dei conti:" class="sapUiSmallMarginEnd" />
-                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Text  text="{ControlloCorteConti}" class="sapUiMediumMarginEnd"/>
                </layout:HorizontalLayout >
                 <layout:HorizontalLayout wrapping="true"  class="sapUiMediumMarginTop">
                 <Label text="Attesa documentazione aggiuntiva:" class="sapUiSmallMarginEnd"  />
@@ -66,11 +66,11 @@
                         <Title text="Dati Ragioneria" />
                         <layout:HorizontalLayout wrapping="true">
                         <Label text="Ragioneria:" class="sapUiSmallMarginEnd" />
-                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                        <Text  text="{Ragioneria}" class="sapUiMediumMarginEnd"/>
                     <Label text="Data Protocollo RGS:" class="sapUiSmallMarginEnd" />
-                    <Text  text="" class="sapUiMediumMarginEnd"/>
+                    <Text  text="{DataProtocolloRag}" class="sapUiMediumMarginEnd"/>
                      <Label text="N.Protocollo RGS:" class="sapUiSmallMarginEnd"/>
-                        <Text  text="" class="sapUiMediumMarginEnd"/>
+                        <Text  text="{NProtocolloRag}" class="sapUiMediumMarginEnd"/>
                </layout:HorizontalLayout >
                 </layout:VerticalLayout>
                 <OverflowToolbar>
@@ -80,16 +80,16 @@
             </f:DynamicPageHeader>
         </f:header>
         <f:content>
-            <IconTabBar id="idIconTabBar" class="sapUiResponsiveContentPadding" select="onSelect" >
+            <IconTabBar id="IconTabBar" class="sapUiResponsiveContentPadding" select="onSelect"  expandable="true" expanded="false">
                 <items>
                     <IconTabFilter icon="sap-icon://list" text="Lista IPE" key="ListaIPE" >
                       <core:Fragment fragmentName="gestione1.fragment.listaIPE" type="XML"  />
                     </IconTabFilter>
                     <IconTabSeparator/>
-                    <IconTabFilter icon="sap-icon://history" text="Workflow" key="Workflow">
+                    <IconTabFilter icon="sap-icon://history" text="Workflow" key="Workflow" >
                     </IconTabFilter>
                     <IconTabSeparator/>
-                    <IconTabFilter icon="sap-icon://documents" text="Fascicolo Elettronico" key="Fascicolo">
+                    <IconTabFilter icon="sap-icon://documents" text="Fascicolo Elettronico" key="Fascicolo" >
                     </IconTabFilter>
                     <!-- <ComboBox>
                       <items>

@@ -9,12 +9,12 @@
     xmlns:core="sap.ui.core"
     xmlns:menu="sap.m.MenuItem"
     xmlns:menBtn="sap.m.Menu" height="100%">
-    <Table class="sapUiSizeCompact" id="DecretoGI" items="{DecretoGI>/}" includeItemInSelection="true"  mode="SingleSelect" >
+    <Table class="sapUiSizeCompact" id="DecretoImpegno" items="{DecretoImpegno>/}" includeItemInSelection="true"  mode="SingleSelectLeft" >
         <headerToolbar>
             <OverflowToolbar>
                 <content>
                     <ToolbarSpacer />
-                    <Button icon="sap-icon://display" id="DettagliDE" press="navToDettagliDE" type="Emphasized" text="Dettagli Decreto di Impegno" />
+                    <Button icon="sap-icon://display" id="DettagliDE" press="onNavToDettagliDE" type="Emphasized" text="Dettagli Decreto di Impegno" />
                     <Button icon="sap-icon://excel-attachment" id="Esporta" press="onExport" type="Emphasized" text="Esporta" />
                 </content>
             </OverflowToolbar>
@@ -49,15 +49,15 @@
             </Column>
         </columns>
         <ColumnListItem type="Active">
-            <Text text="{DecretoGI>Esercizio}" />
-            <Text text="{DecretoGI>Amministrazione}" />
-            <Text text="{DecretoGI>UffILivello}" />
-            <Text text="{DecretoGI>UffIILivello}" />
-            <Text text="{DecretoGI>NumeroDecreto}" />
-            <Text text="{DecretoGI>DataDecreto}" />
-            <Text text="{DecretoGI>Ragioneria}" />
-            <Text text="{DecretoGI>TipologiaImpegno}" />
-            <Text text="{DecretoGI>StatoDecreto}" />
+            <Text text="{DecretoImpegno>Esercizio}" />
+            <Text text="{DecretoImpegno>Amministrazione}" />
+            <Text text="{DecretoImpegno>UfficioLiv1}" />
+            <Text text="{DecretoImpegno>UfficioLiv1}" />
+            <Text text="{DecretoImpegno>NumeroDecreto}" />
+            <Text text="{DecretoImpegno>DataDecreto}" />
+            <Text text="{DecretoImpegno>Ragioneria}" />
+            <Text text="{DecretoImpegno>TipologiaImpegno}" />
+            <Text text="{DecretoImpegno>CodiceStato}" />
 
         </ColumnListItem>
     </Table>

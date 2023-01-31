@@ -1,6 +1,7 @@
 sap.ui.define(
   [
-    "sap/ui/core/mvc/Controller",
+    //"sap/ui/core/mvc/Controller",
+    "./BaseController",
     "sap/ui/core/library",
     'sap/ui/model/json/JSONModel',
     "sap/m/MessageBox",
@@ -9,7 +10,6 @@ sap.ui.define(
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
     "sap/m/SearchField",
-    "./BaseController"
 
   ],
   function (BaseController,CoreLibrary,JSONModel,MessageBox,syncStyleClass,Fragment,Filter,FilterOperator,SearchField) {

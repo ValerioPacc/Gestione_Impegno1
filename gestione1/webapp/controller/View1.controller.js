@@ -1,14 +1,17 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
+    //"sap/ui/core/mvc/Controller",
+    "./BaseController",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "./BaseController"
+    'sap/ui/export/Spreadsheet'
+    
 ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (BaseController,Filter,FilterOperator) {
+    function (BaseController,Filter,FilterOperator,Spreadsheet) {
         "use strict";
+        var EdmType = sap.ui.export.EdmType
 
         return BaseController.extend("gestione1.controller.View1", {
             onInit: function () {
@@ -32,7 +35,7 @@ sap.ui.define([
             },
            
             onSearch: function (oEvent) {
-                var that = this;
+                 var that = this;
                 var datiGI = [];
 
                 // var abc=this.getView().byId("filterbar").getAllFilterItems();
@@ -108,52 +111,41 @@ sap.ui.define([
                     }
                 }
                 //console.log(datiGI)
-                
-                var that = this;
-                var oMdl = new sap.ui.model.json.JSONModel();
-                this.getView().getModel().read("/DecretoImpegnoSet", {
-                    filters: datiGI,
-                    urlParameters: "",
-                    success: function (data) {
-                        oMdl.setData(data.results);
-                        that.getView().getModel("temp").setProperty('/DecretoImpegnoSet', data.results)
-                    },
-                    error: function (error) {
-                        //that.getView().getModel("temp").setProperty(sProperty,[]);
-                        //that.destroyBusyDialog();
-                        var e = error;
-                    }
-                });
-
-                // var oMdl = new sap.ui.model.json.JSONModel();
+               
+                var oDataModel = that.getModel();
+                 that.getModel().metadataLoaded().then( function() { 
+                    oDataModel.read("/DecretoImpegnoSet", {
+                    filters: datiGI ,
+                     urlParameters: "",
+                      success: function(data, oResponse){
+                        var oModelJson = new sap.ui.model.json.JSONModel();
+                          oModelJson.setData(data.results);
+                           that.getView().getModel("temp").setProperty('/DecretoImpegnoSet', oModelJson); 
+                           that.getOwnerComponent().setModel(oModelJson, "DecretoImpegno");
+                         },
+                          error: function(error){
+                    var e = error;}
+                 });
+             });
+          
                 // var that = this;
-                // var sUrl="/sap/opu/odata/sap/ZS4_NOTEIMPUTAZIONI_SRV/HeaderNISet"
-                // if(datiGI.length!=0){
-                //     var sUrl="/sap/opu/odata/sap/ZS4_NOTEIMPUTAZIONI_SRV/HeaderNISet"+ datiGI
-                // }
-
-                // var aData = jQuery.ajax({
-                //     type: "GET",
-                //     contentType: "application/json",
-                //     url:sUrl,
-                //     dataType: "json",
-                //     data: JSON.stringify(datiGI),
-                //     async: false,
-                //     success: function (data, textStatus, jqXHR) {
-                //         // resolve(data.value)
-                //         //console.log(data)
-                //         oMdl.setData(data.d.results);
-                //         that.getView().getModel("temp").setProperty('/HeaderNISet', data.d.results)
-
-                //         //console.log(data.d.results)
+                // var oMdl = new sap.ui.model.json.JSONModel();
+                // this.getView().getModel().read("/DecretoImpegnoSet", {
+                //     filters: datiGI,
+                //     urlParameters: "",
+                //     success: function (data) {
+                //         oMdl.setData(data.results);
+                //         that.getView().getModel("temp").setProperty('/DecretoImpegnoSet', data.results)
                 //     },
                 //     error: function (error) {
+                //         //that.getView().getModel("temp").setProperty(sProperty,[]);
+                //         //that.destroyBusyDialog();
                 //         var e = error;
                 //     }
                 // });
-                // console.log(oMdl)
 
-                this.getOwnerComponent().setModel(oMdl, "DecretoGI");
+
+                //  this.getOwnerComponent().setModel(oModelJson, "DecretoImpegno");
                 //sap.ui.getCore().TableModel = oMdlW;
                 // this.getView().byId("Esporta").setEnabled(true);
                 // this.getView().byId("PreimpostazioneNI").setEnabled(true);
@@ -162,48 +154,103 @@ sap.ui.define([
             navToWizard: function (oEvent) {
                 this.getOwnerComponent().getRouter().navTo("wizard");
             },
-            navToDettagliDE: function (oEvent) {
-                this.getOwnerComponent().getRouter().navTo("dettagliDE");
+            onNavToDettagliDE: function(){
+                var row = this.getView().byId("DecretoImpegno").getSelectedItem().getBindingContext("DecretoImpegno").getObject()
+                // var HeaderITB = new sap.ui.model.json.JSONModel();
+                // HeaderITB.setData(row);
+                // this.getView().getModel("temp").setProperty('/', HeaderITB)
+                this.getOwnerComponent().getRouter().navTo("dettagliDE", {campo:row.Esercizio, campo1:row.Amministrazione, campo2: row.UfficioLiv1, campo3:row.UfficioLiv2, campo4:row.NumeroDecreto, campo5:row.DataDecreto, campo6:row.Ragioneria, campo7:row.TipologiaImpegno, campo8:row.CodiceStato,})
             },
 
             onRowSelectionChange: function (oEvent) {
                 this.getView().byId("PreimpostazioneNI").setEnabled(false);
             },
 
-            // onExport: function () {
-            //     //console.log("onExport")
-            //     var aCols, oRowBinding, oSettings, oSheet, oTable;
 
-            //     if (!this._oTable) {
-            //         this._oTable = this.byId('DecretoGI');
-            //     }
+            createColumnConfig: function () {
+                var aCols = [];
 
-            //     oTable = this._oTable;
+                aCols.push({
+                    property: 'Esercizio',
+                    type: EdmType.String
+                });
+
+                aCols.push({
+                    property: 'Amministrazione',
+                    type: EdmType.String
+                });
+
+                aCols.push({
+                    property: 'UfficioLiv1',
+                    type: EdmType.String
+                });
+
+                aCols.push({
+                    property: 'UfficioLiv2',
+                    type: EdmType.String
+                });
+
+                aCols.push({
+                    property: 'NumeroDecreto',
+                    type: EdmType.String
+                });
+
+                aCols.push({
+                    property: 'DataDecreto',
+                    type: EdmType.String
+                });
+
+                aCols.push({
+                    property: 'Ragioneria',
+                    type: EdmType.Number
+                });
+
+                aCols.push({
+                    property: 'TipologiaImpegno',
+                    type: EdmType.Number
+                });
+
+                aCols.push({
+                    property: 'StatoDecreto',
+                    type: EdmType.Number
+                });
+
+                return aCols;
+            },
+            onExport: function () {
+                //console.log("onExport")
+                var aCols, oRowBinding, oSettings, oSheet, oTable;
+
+                if (!this._oTable) {
+                    this._oTable = this.byId('DecretoImpegno');
+                }
+
+                oTable = this._oTable;
 
 
-            //     // var oSelectedItemPath = oEvent.getSource().getParent().getBindingContextPath();
-            //     // var oSelectedItem = this.getOwnerComponent().getModel("booksMdl").getObject(oSelectedItemPath);
+                // var oSelectedItemPath = oEvent.getSource().getParent().getBindingContextPath();
+                // var oSelectedItem = this.getOwnerComponent().getModel("booksMdl").getObject(oSelectedItemPath);
 
-            //     //console.log("table1: " + oTable)
-            //     oRowBinding = oTable.getBinding('items');
-            //     //console.log("row binding: " + oRowBinding);
-            //     aCols = this.createColumnConfig();
+                //console.log("table1: " + oTable)
+                oRowBinding = oTable.getBinding('items');
+                //console.log("row binding: " + oRowBinding);
+                aCols = this.createColumnConfig();
 
-            //     oSettings = {
-            //         workbook: {
-            //             columns: aCols,
-            //             hierarchyLevel: 'Level'
-            //         },
-            //         dataSource: oRowBinding,
-            //         fileName: 'Esportazione GI',
-            //         worker: false // We need to disable worker because we are using a MockServer as OData Service
-            //     };
+                oSettings = {
+                    workbook: {
+                        columns: aCols,
+                        hierarchyLevel: 'Level'
+                    },
+                    dataSource: oRowBinding,
+                    fileName: 'Esportazione DE',
+                    worker: false // We need to disable worker because we are using a MockServer as OData Service
+                };
 
-            //     oSheet = new sap.ui.export.Spreadsheet(oSettings);
-            //     oSheet.build().finally(function () {
-            //         oSheet.destroy();
-            //     });
-            // },
+                oSheet = new sap.ui.export.Spreadsheet(oSettings);
+                oSheet.build().finally(function () {
+                    oSheet.destroy();
+                });
+            },
         });
     });
 
