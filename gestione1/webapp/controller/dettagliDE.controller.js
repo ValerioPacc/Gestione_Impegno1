@@ -38,7 +38,7 @@ sap.ui.define(
           if (key === "ListaIPE") {
               // var oProprietà = this.getView().getModel();
               // oProprietà.setProperty("/TableVisible", true)
-              this.getView().byId("idIconTabBar").destroyContent()
+              this.getView().byId("IconTabBar").destroyContent()
 
           }
         },

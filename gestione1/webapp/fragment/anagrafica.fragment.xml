@@ -1,7 +1,9 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
      <Dialog id="Anagrafica"  draggable="true" showHeader="true" titleAlignment="Start"
-      afterClose="onAfterClose" contentWidth="auto" contentHeight="80%">
-      <f:Form editable="false" title="Dati Anagrafica Bancario">
+      afterClose="onAfterClose" contentWidth="100%" contentHeight="100%">
+
+
+       <f:Form editable="false" title="Dati Anagrafica Bancario">
          <f:layout>
             <f:ColumnLayout columnsM="1" columnsL="1" columnsXL="1"/>
          </f:layout>
@@ -55,16 +57,16 @@
                      </Input>
                   </f:fields>
                </f:FormElement>
-               <f:FormElement visible="{dialogModel>/GgVisible}">
-                  <f:label>
-                     <Label text="Via" required= "true"/>
-                  </f:label>
+               <f:FormElement label="Via" visible="{dialogModel>/GgVisible}">
+               <f:label>
+                     <Label  required= "true"/>
+                   </f:label>
                   <f:fields>
                      <Input id="inputVia" class="validateFilter" value="{}">
                      </Input>
-                      <Input class="validateFilter" value="{}" width="30%">
-                     </Input>
                   </f:fields>
+                    <Input class="validateFilter" value="{}" width="30%">
+                     </Input>
                </f:FormElement>
                 <f:FormElement visible="{dialogModel>/GgVisible}">
                   <f:label>
@@ -90,6 +92,7 @@
                      </Input>
                   </f:fields>
                </f:FormElement>
+              
   </f:FormContainer>
          </f:formContainers>
       </f:Form>
@@ -129,12 +132,12 @@
                 
             </f:FormContainer>
          </f:formContainers>
-      </f:Form>
+      </f:Form> 
       <beginButton>
        <Button text="Indietro" type="Emphasized" press="onCloseDialog1"/>
       </beginButton>
       <endButton>
-        <Button text="Salva" type="Emphasized" press="onOpenFragmentBusyDialog"/>
+        <Button text="Salva" type="Emphasized" press="onSaveMessageDialogPress"/>
       </endButton>
    </Dialog>
     

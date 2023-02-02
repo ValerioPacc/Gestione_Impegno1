@@ -22,7 +22,7 @@
                 <l:content>
                      
                     <VBox>
-                        <Label text="IBAN" labelFor="IBAN" required="true" />
+                        <Label text="IBAN" labelFor="IBAN" />
                         <ComboBox required="true" items="">
                             <core:Item key="1" text="1" />
                             <core:Item key="2" text="2" />

@@ -219,6 +219,18 @@ sap.ui.define(
 
     //  },
 
+    onSaveMessageDialogPress: function () {
+      sap.m.MessageBox.warning("Servizio certificazione beneficiario avviato,in attesa di risposta, si prega di attendere", {
+        title: "Procedura avvio richiesta creazione anagrafica beneficiario",                                    // default
+        onClose:  MessageBox.success("Decreto cancellato con successo"),                                       // default
+        styleClass: "",                                      // default
+        customIcon: "../img/kOnzy.gif",               // default
+        emphasizedAction: null,        // default
+        initialFocus: null,                                  // default
+        textDirection: sap.ui.core.TextDirection.Inherit,
+       
+      })
+    },
 
     onWarning2MessageBoxPress: function () {
       sap.m.MessageBox.warning("Servizio certificazione beneficiario avviato,in attesa di risposta, si prega di attendere", {

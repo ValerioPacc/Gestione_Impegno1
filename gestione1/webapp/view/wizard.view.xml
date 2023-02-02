@@ -59,29 +59,35 @@
                                 <l:Grid>
                                     <l:content>
                                         <VBox>
-                                            <Label text="Esercizio:" />
+                                            <Label text="Esercizio:" required="true"/>
+                                            <ComboBox id="es_decreto" items="{path: '/DecretoImpegnoSet', sorter: { path: 'Esercizio' }}">
+                                            <core:Item id="es_decreto1" key="{Esercizio}" text="{Esercizio}" />
+                                            </ComboBox>
+                                            <layoutData>
+                                                <l:GridData span="L3 M3 S3" />
+                                            </layoutData>
+                                        </VBox>
+                                        <VBox>
+                                            <Label text="Amministrazione:" required="true"/>
                                             <Input value="" />
                                             <layoutData>
                                                 <l:GridData span="L3 M3 S3" />
                                             </layoutData>
                                         </VBox>
                                         <VBox>
-                                            <Label text="Amministrazione:" />
-                                            <Input value="" />
+                                            <Label text="Numero Contratto:" required="true" showValueHelp="false" showSuggestion="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: 'ContrattoOrdine' }}"/>
+                                            <Input value="" >
+                                             <core:Item key="{ContrattoOrdine}" text="{ContrattoOrdine}"/>
+                                    </Input>
                                             <layoutData>
                                                 <l:GridData span="L3 M3 S3" />
                                             </layoutData>
                                         </VBox>
                                         <VBox>
-                                            <Label text="Numero Contratto:" />
-                                            <Input value="" />
-                                            <layoutData>
-                                                <l:GridData span="L3 M3 S3" />
-                                            </layoutData>
-                                        </VBox>
-                                        <VBox>
-                                            <Label text="Data Stipula:" />
-                                            <Input value="" />
+                                            <Label text="Data Stipula:" required="true" showValueHelp="false" showSuggestion="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: '' }}"/>
+                                            <Input value="">
+                                             <core:Item key="{}" text="{}"/>
+                                             </Input>
                                             <layoutData>
                                                 <l:GridData span="L3 M3 S3" />
                                             </layoutData>
@@ -115,7 +121,7 @@
                                             </layoutData>
                                         </VBox>
                                         <VBox>
-                                            <Label text="Importo Totale del Contratto:" />
+                                            <Label text="Importo Totale del Contratto:" wrapping="true"/>
                                             <Input value="" width="60%" />
                                             <layoutData>
                                                 <l:GridData span="L6 M3 S3" />
@@ -124,7 +130,7 @@
                                     </l:content>
                                 </l:Grid>
 
-                                <Table class="sapUiSizeCompact" id="tabPreimpNI" includeItemInSelection="true" items="{>/items}" headerText="Riepilogo Pianificazione Finanziaria">
+                                <Table class="sapUiSizeCompact" id="tabPreimpNI" includeItemInSelection="true" items="{>/items}" headerText="Riepilogo Pianificazione Finanziaria" width="70%">
                                     <columns>
                                         <Column width="12%">
                                             <Label text="Esercizio" />
@@ -143,11 +149,11 @@
                                         </Column>
                                     </columns>
                                     <ColumnListItem>
-                                        <Text text="{tabPreimpNI>Numero NI}" />
-                                        <Text text="{tabPreimpNI>Struttura Amministrativa Responsabile}" />
-                                        <Text text="{tabPreimpNI>Posizione Finanziaria}" />
-                                        <Text text="{tabPreimpNI>Oggetto della spesa}" />
-                                        <Text text="{tabPreimpNI>Mese}" />
+                                        <Text text="{DecretoImpegnoSet>Numero NI}" />
+                                        <Text text="{DecretoImpegnoSet>Struttura Amministrativa Responsabile}" />
+                                        <Text text="{DecretoImpegnoSet>Posizione Finanziaria}" />
+                                        <Text text="{DecretoImpegnoSet>Oggetto della spesa}" />
+                                        <Text text="{DecretoImpegnoSet>Mese}" />
                                     </ColumnListItem>
                                 </Table>
                             </content>
@@ -190,7 +196,9 @@
                         >
                             <VBox>
                                 <Label text="Beneficiario:" required="true" />
-                                <MultiInput id="vh" key="{respModel>matricola}" text="{respModel>cognome} {respModel>nome} {respModel>matricola}" />
+                               <Input showSuggestion="true" id="beneficiario1" showValueHelp="true" suggestionItems="{path: '/DecretoImpegnoSet', sorter: { path: 'Beneficiario' }}">
+                                      <core:Item key="{Beneficiario}" text="{Beneficiario}"/>
+                                    </Input>
                                 <layoutData>
                                     <l:GridData span="L6 M3 S3" />
                                 </layoutData>
@@ -203,9 +211,9 @@
                                     
                                         <Label text="Codice Fiscale:" />
                                         <Input id="cFiscale" />
-                                        <Label text="Nome:" required="true" />
+                                        <Label text="Nome:"  />
                                         <Input id="nome" />
-                                        <Label text="Ragione Sociale:" required="true" />
+                                        <Label text="Ragione Sociale:"  />
                                         <Input id="rSociale" />
                                         
                                         </VBox>
@@ -216,9 +224,9 @@
                                     <VBox class="sapUiLargeMarginBegin">
                                         <Label text="Codice Fiscale Estero:" />
                                         <Input id="cFiscaleE" />
-                                        <Label text="Cognome:" required="true" />
+                                        <Label text="Cognome:"  />
                                         <Input id="cognome" />
-                                        <Label text="Partita IVA:" required="true" />
+                                        <Label text="Partita IVA:" />
                                         <Input id="IVA" />
                                         </VBox>
                                     
